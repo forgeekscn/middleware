@@ -4,6 +4,9 @@ import cn.forgeeks.springcloud.fastDFS.fastdfs.FastDFSClient;
 import cn.forgeeks.springcloud.fastDFS.fastdfs.FastDFSFile;
 import cn.forgeeks.springcloud.mail.common.MailBean;
 import cn.forgeeks.springcloud.mail.common.MailUtil;
+import cn.forgeeks.springcloud.memcached.common.MemcachedRunner;
+import net.spy.memcached.MemcachedClient;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +18,24 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.InputStream;
 
 @RestController
 public class UploadController {
-    private static Logger logger = LoggerFactory.getLogger(UploadController.class);
+    private static Logger log = LoggerFactory.getLogger(UploadController.class);
+
+    @Autowired
+    MemcachedRunner memcachedRunner;
+
+    @Autowired
+    MailUtil mailUtil;
 
     @GetMapping("/")
     public String index() {
         return "upload";
     }
-
-    @Autowired
-    MailUtil mailUtil;
 
     @PostMapping("/upload") //new annotation since 4.3
     public String singleFileUpload(@RequestParam("file") MultipartFile file,
@@ -45,7 +52,7 @@ public class UploadController {
             redirectAttributes.addFlashAttribute("path",
                     "file path url '" + path + "'");
         } catch (Exception e) {
-            logger.error("upload file failed",e);
+            log.error("upload file failed",e);
         }
         return "redirect:/uploadStatus";
     }
@@ -76,10 +83,10 @@ public class UploadController {
         try {
             fileAbsolutePath = FastDFSClient.upload(file);  //upload to fastdfs
         } catch (Exception e) {
-            logger.error("upload file Exception!",e);
+            log.error("upload file Exception!",e);
         }
         if (fileAbsolutePath==null) {
-            logger.error("upload file failed,please upload again!");
+            log.error("upload file failed,please upload again!");
         }
         String path=FastDFSClient.getTrackerUrl()+fileAbsolutePath[0]+ "/"+fileAbsolutePath[1];
         return path;
@@ -100,6 +107,12 @@ public class UploadController {
 
     }
 
+    @PostMapping("/testMemcached")
+    public void testMemcached(){
+        MemcachedClient memcachedClient = memcachedRunner.getClient();
+        memcachedClient.set("testkey", 1000, "666666");
+        log.info("***********  [{}]" , memcachedClient.get("testkey").toString());
+    }
 
 
 
