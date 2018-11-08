@@ -7,8 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Awesome-Collection" />
-        <module name="common" />
-        <module name="order" />
+        <module name="common-rabbitmq" />
       </profile>
     </annotationProcessing>
   </component>
