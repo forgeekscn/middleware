@@ -1,5 +1,11 @@
 #### FOCUS POINT ON *THREAD*
  
+ 
+- 实现一个线程安全的并发容器,类似于concorrentHashMap
+    - 是
+    - 是
+
+ 
 1. 什么是Java内存模型？
     - 内存模型描述了线程之间如何通过内存进行交互,包括三个区域,heap堆,stack栈,method方法区
     - 对象实例放在heap,局部变量基本数据类型对象引用放在stack,类信息静态变量常量放在method

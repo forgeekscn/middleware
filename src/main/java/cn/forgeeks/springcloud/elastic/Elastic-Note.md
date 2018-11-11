@@ -1,18 +1,26 @@
 
 # Elasticsearch
 
-
 - 电商搜索场景
     - 关注点:
+        + java api
         + 分词搜索
         + 索引构建
         + 性能优化 
    
    - 需求分析库表设计
-   
+        - 数据量1000W+
+        - 支持实时检索
+        - 支持中文分词搜索
+        - 持久化mysql
+        - 库表: 商品,商铺,客户,订单
+        
    - 业务关注点
+        - 参考天猫搜索首页,实现基本搜索功能
       
-    
+   - 链接
+       - 架构: https://juejin.im/post/5b63c79b6fb9a04fa01d5f39
+       - rest api : https://blog.csdn.net/stark_summer/article/details/48830493
     
     
     
