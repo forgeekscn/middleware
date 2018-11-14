@@ -7,8 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Awesome-Collection" />
-        <module name="common-rabbitmq" />
+        <module name="springboot" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="awesome" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
