@@ -115,13 +115,5 @@ base operate => sudo service mysql restart/start/stop
 ubuntu change pwd => sudo vim /etc/mysql/debian.cnf
 
 local pwd => root/root
-
-
-+++++++++   myth  +++++++++++++++++
-
-test swager page => http://localhost:8884/swagger-ui.html#!/order-controller/orderPayUsingPOST
-
-rabbit mq admin page => http://localhost:15672/#/
-
-admin page => http://localhost:8888/myth-admin/index.html
+ 
          
