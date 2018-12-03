@@ -3,8 +3,8 @@ package cn.forgeeks.awesome.springboot.fastDFS.common;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-@Component
-@ConfigurationProperties(prefix = "memcache")
+// @Component
+// @ConfigurationProperties(prefix = "memcache")
 public class MemcacheSource {
 
     private String ip;

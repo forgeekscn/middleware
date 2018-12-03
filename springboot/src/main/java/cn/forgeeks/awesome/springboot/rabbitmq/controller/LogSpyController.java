@@ -1,9 +1,7 @@
 package cn.forgeeks.awesome.springboot.rabbitmq.controller;
 
-import cn.forgeeks.awesome.springboot.rabbitmq.common.RabbitMailSender;
-import cn.forgeeks.awesome.springboot.rabbitmq.common.RabbitOrderSender;
+import cn.forgeeks.awesome.springboot.rabbitmq.common.*;
 import cn.forgeeks.awesome.springboot.rabbitmq.dto.*;
-import cn.forgeeks.awesome.springboot.rabbitmq.common.RabbitLogSender;
 import cn.forgeeks.awesome.springboot.rabbitmq.dto.MessageDto;
 import cn.forgeeks.awesome.springboot.rabbitmq.dto.MessageSendDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +25,12 @@ public class LogSpyController {
 
     @Autowired
     RabbitOrderSender rabbitOrderSender;
+
+    @Autowired
+    RabbitDirectSender rabbitDirectSender;
+
+    @Autowired
+    RabbitFanoutSender rabbitFanoutSender;
 
     /**
      * 模拟生产特定类型消息并消费
@@ -55,4 +59,21 @@ public class LogSpyController {
         return new ResultDto(200,"Success.");
     }
 
+    /**
+     *  测试Direct模式的消息分发
+     */
+    @RequestMapping(value = "/direct")
+    public ResultDto directTest(@RequestBody MessageSendDto param){
+        rabbitDirectSender.send(param.getMessage());
+        return new ResultDto(200,"Success.");
+    }
+
+    /**
+     *  测试广播模式消息分发
+     */
+    @RequestMapping(value = "/fanout")
+    public ResultDto fanoutTest(@RequestBody MessageSendDto param){
+        rabbitFanoutSender.send(param.getMessage());
+        return new ResultDto(200,"Success.");
+    }
 }

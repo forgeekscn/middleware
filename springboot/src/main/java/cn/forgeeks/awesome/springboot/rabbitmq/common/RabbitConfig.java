@@ -85,6 +85,24 @@ public class RabbitConfig {
     }
 
     /**
+     *  广播模式交换器
+     */
+    @Bean
+    public FanoutExchange fanoutExchange(){
+        log.info("广播模式交换器[{}]", Consts.EXCHANGE_FANOUT);
+        return  new FanoutExchange(Consts.EXCHANGE_FANOUT);
+    }
+
+    /**
+     *  构建直连Direct交换机
+     */
+        @Bean
+        public DirectExchange directExchange(){
+            log.info("构建直连Direct交换机[{}]",Consts.EXCHANGE_DIRECT);
+            return new DirectExchange(Consts.EXCHANGE_DIRECT);
+        }
+
+    /**
      * 构建error日志队列
      */
     @Bean
@@ -129,6 +147,59 @@ public class RabbitConfig {
         return  new Queue(Consts.QUEUE_MYTH_ORDER_ALL ,true);
     }
 
+    /**
+     *  构建direct模式专用的队列
+     */
+    @Bean
+    public Queue queueDirect(){
+        log.info(" 构建direct模式专用的队列[{}]",Consts.QUEUE_DIRECT_MSG);
+        return new Queue(Consts.QUEUE_DIRECT_MSG );
+    }
+
+    /**
+     *  构建Fanout模式的队列A
+     */
+    @Bean
+    public Queue queueFanoutA(){
+        log.info("构建Fanout模式的队列A", Consts.QUEUE_FANOUT_A);
+        return QueueBuilder.durable(Consts.QUEUE_FANOUT_A).build();
+    }
+
+    /**
+     *  构建Fanout模式的队列B
+     */
+    @Bean
+    public Queue queueFanoutB(){
+        log.info("构建Fanout模式的队列A", Consts.QUEUE_FANOUT_B);
+        return  QueueBuilder.durable(Consts.QUEUE_FANOUT_B).build();
+    }
+
+    /**
+     *  构建直连DIRECt绑定
+     */
+    @Bean
+    public Binding bindingQueueDirect(Queue queueDirect , DirectExchange  directExchange){
+        log.info("构建直连DIRECt绑定[{}]",Consts.ROUTING_WITH_DIRECT_QUEUE_AND_EXCHANGE);
+        return BindingBuilder.bind(queueDirect).to(directExchange).with(Consts.ROUTING_WITH_DIRECT_QUEUE_AND_EXCHANGE);
+    }
+
+    /**
+     *  构建广播模式绑定A
+     */
+    @Bean
+    public Binding bindingQueueFanoutA(Queue queueFanoutA  , FanoutExchange fanoutExchange ){
+        log.info("构建广播模式绑定A");
+        return BindingBuilder.bind(queueFanoutA).to(fanoutExchange);
+    }
+
+    /**
+     *  构建广播模式绑定B
+     */
+    @Bean
+    public Binding bindingQueueFanoutB( Queue queueFanoutB , FanoutExchange fanoutExchange ){
+        log.info("构建广播模式绑定B");
+        return BindingBuilder.bind(queueFanoutB).to(fanoutExchange);
+    }
 
     /**
      *  构建所有日志绑定路由

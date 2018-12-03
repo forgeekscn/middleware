@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
-@Component
+// @Component
 public class MemcachedRunner implements CommandLineRunner {
     protected Logger logger =  LoggerFactory.getLogger(this.getClass());
 

@@ -118,7 +118,6 @@ public class RedisUtil {
      * 递增
      *
      * @param key 键
-     * @param by  要增加几(大于0)
      * @return
      */
     public long incr(String key, long delta) {
