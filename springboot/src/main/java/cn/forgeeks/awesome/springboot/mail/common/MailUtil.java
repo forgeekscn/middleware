@@ -1,4 +1,4 @@
-package cn.forgeeks.awesome.springboot.fastDFS.common;
+package cn.forgeeks.awesome.springboot.mail.common;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;

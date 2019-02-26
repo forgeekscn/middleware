@@ -1,4 +1,4 @@
-package cn.forgeeks.awesome.springboot.fastDFS.common;
+package cn.forgeeks.awesome.springboot.mail.common;
 
 import lombok.Data;
 import lombok.ToString;
