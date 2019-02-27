@@ -1,6 +1,7 @@
 package cn.forgeeks.awesome.springboot.rabbitmq.common;
 
 import cn.forgeeks.awesome.springboot.rabbitmq.dto.MessageDto;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
