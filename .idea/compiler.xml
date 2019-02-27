@@ -13,6 +13,7 @@
     <bytecodeTargetLevel>
       <module name="common" target="1.8" />
       <module name="order" target="1.8" />
+      <module name="springboot" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
