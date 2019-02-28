@@ -1,1 +1,0 @@
-#### FOCUS POINT ON *ELASTIC*
