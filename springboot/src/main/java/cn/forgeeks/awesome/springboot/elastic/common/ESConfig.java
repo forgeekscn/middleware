@@ -1,5 +1,6 @@
 package cn.forgeeks.awesome.springboot.elastic.common;
 
+import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
@@ -9,11 +10,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 /**
  * es配置类
  **/
+@Slf4j
 @Configuration
 public class ESConfig {
 
@@ -28,14 +29,12 @@ public class ESConfig {
 
 
     @Bean
-    public TransportClient client() throws UnknownHostException {
-        InetSocketTransportAddress node = new InetSocketTransportAddress(
-                InetAddress.getByName(clusterIp),clusterPort);
-        Settings settings = Settings.builder()
-                .put("cluster.name", clusterName)
-                .build();
+    public TransportClient client() throws Exception {
+        // Settings settings = Settings.builder().put("cluster.name", clusterName).put("node.name", "wQGpxZ").build();
+        Settings settings = Settings.builder().put("cluster.name", clusterName).put("node.name", "node-1").build();
         TransportClient client = new PreBuiltTransportClient(settings);
-        client.addTransportAddress(node);
+        client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(clusterIp), clusterPort));
+        log.info("搜索引擎配置 es init config [{}]", settings);
         return client;
     }
 }
