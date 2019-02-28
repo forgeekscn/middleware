@@ -5,11 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.forgeeks.awesome</groupId>
-    <artifactId>common</artifactId>
+    <artifactId>geek-platform</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>springboot</module>
         <module>order-web</module>
         <module>inventory-web</module>
         <module>redis-service</module>
