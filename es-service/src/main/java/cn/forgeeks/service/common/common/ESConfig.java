@@ -34,7 +34,7 @@ public class ESConfig {
         Settings settings = Settings.builder().put("cluster.name", clusterName).put("node.name", "node-1").build();
         TransportClient client = new PreBuiltTransportClient(settings);
         client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(clusterIp), clusterPort));
-        log.info("搜索引擎配置 common init config [{}]", settings);
+        log.info("es搜索引擎配置完成", settings);
         return client;
     }
 }

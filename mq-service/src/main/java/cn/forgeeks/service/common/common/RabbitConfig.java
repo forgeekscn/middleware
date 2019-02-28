@@ -264,6 +264,7 @@ public class RabbitConfig {
         container.setMessageListener(rabbitOrderListener);
         container.setAcknowledgeMode(AcknowledgeMode.MANUAL);
         log.info("构建秒杀订单特有的监听器[{}]",rabbitOrderListener);
+        log.info("rabbit消息队列配置完成");
         return container;
     }
 
