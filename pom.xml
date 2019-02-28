@@ -13,6 +13,10 @@
         <module>order-web</module>
         <module>inventory-web</module>
         <module>redis-service</module>
+        <module>mq-service</module>
+        <module>es-service</module>
+        <module>mail-service</module>
+        <module>utils-service</module>
     </modules>
 
     <parent>
