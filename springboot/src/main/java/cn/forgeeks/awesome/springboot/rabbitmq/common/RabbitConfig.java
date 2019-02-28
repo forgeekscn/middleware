@@ -1,22 +1,24 @@
 package cn.forgeeks.awesome.springboot.rabbitmq.common;
 
-import io.swagger.models.auth.In;
+import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
+import org.springframework.amqp.rabbit.connection.Connection;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.connection.SimpleConnection;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+
+import java.io.IOException;
 
 /**
  *  队列初始化
@@ -81,7 +83,7 @@ public class RabbitConfig {
     @Bean
     public TopicExchange exchangeMythTopic(){
         log.info("构建交换机[{}]", Consts.EXCHANGE_MYTH_TOPIC );
-        return new TopicExchange(Consts.EXCHANGE_MYTH_TOPIC);
+        return new TopicExchange(Consts.EXCHANGE_MYTH_TOPIC );
     }
 
     /**
