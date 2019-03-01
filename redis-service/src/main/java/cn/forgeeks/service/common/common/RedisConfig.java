@@ -117,7 +117,7 @@ public class RedisConfig {
     public RedisUtil redisUtil(RedisTemplate<String, Object> functionDomainRedisTemplate) {
         RedisUtil redisUtil = new RedisUtil();
         redisUtil.setRedisTemplate(functionDomainRedisTemplate);
-        log.info("redis缓存配置完成");
+        log.info("###################   redis缓存配置完成   #######################");
         return redisUtil;
     }
 }

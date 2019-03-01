@@ -18,7 +18,7 @@ public class OrderController {
     @GetMapping(name = "/order/get")
     public ResultDto getOrder(){
         orderService.test();
-        return new ResultDto(0,"success","");
+        return new ResultDto(0,"success");
     }
 
 }

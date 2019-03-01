@@ -1,7 +1,6 @@
 ##########################################  个人PC运行环境 #####################################
 server:
-    port: 8182
-
+    port: 8180
 spring:
     profiles: home
     application:
@@ -23,12 +22,8 @@ spring:
         username: root
         password: root
 
-common:
-    cluster:
-        ip: 127.0.0.1
-        name: elasticsearch
-        port: 9300
-
+elasticsearch:
+    host: 127.0.0.1
 redis:
     hostName: localhost
     port: 6379
@@ -56,8 +51,7 @@ redis:
 
 ---
 server:
-    port: 8182
-
+    port: 8180
 spring:
     profiles: lumi
     application:
@@ -78,15 +72,8 @@ spring:
         url: jdbc:mysql://localhost:3306/awesome?characterEncoding=utf8
         password: root
         username: root
-
-common:
-    cluster:
-        ip: 127.0.0.1
-        name: elasticsearch
-        port: 9300
-        username: elastic
-        password: changeme
-
+elasticsearch:
+    host: 127.0.0.1
 redis:
     hostName: localhost
     password:
