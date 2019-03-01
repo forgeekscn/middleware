@@ -1,0 +1,108 @@
+##########################################  个人PC运行环境 #####################################
+server:
+    port: 8182
+
+spring:
+    profiles: home
+    application:
+        name: order-web
+    common:
+        host: 127.0.0.1
+        username: myuser
+        password: mypass
+        port: 5672
+        publisher-confirms: true
+        virtual-host: /
+        listener:
+            concurrency: 10
+            max-concurrency: 20
+            prefetch: 4
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/awesome?characterEncoding=utf8
+        username: root
+        password: root
+
+common:
+    cluster:
+        ip: 127.0.0.1
+        name: elasticsearch
+        port: 9300
+
+redis:
+    hostName: localhost
+    port: 6379
+    password: ''
+    maxActive: ''
+    maxIdle: 300
+    maxTotal: 1000
+    maxWaitMillis: 1000
+    minEvictableIdleTimeMillis: 300000
+    numTestsPerEvictionRun: 1024
+    testOnBorrow: true
+    testWhileIdle: true
+    timeBetweenEvictionRunsMillis: 30000
+    timeout: 5000
+
+
+
+
+
+
+
+
+
+###########################################  公司运行环境 #########################################
+
+---
+server:
+    port: 8182
+
+spring:
+    profiles: lumi
+    application:
+        name: order-web
+    common:
+        host: 127.0.0.1
+        port: 5672
+        username: myuser
+        password: mypass
+        publisher-confirms: true
+        virtual-host: /
+        listener:
+            concurrency: 10
+            max-concurrency: 20
+            prefetch: 4
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/awesome?characterEncoding=utf8
+        password: root
+        username: root
+
+common:
+    cluster:
+        ip: 127.0.0.1
+        name: elasticsearch
+        port: 9300
+        username: elastic
+        password: changeme
+
+redis:
+    hostName: localhost
+    password:
+    port: 6389
+    maxActive: ''
+    maxIdle: 300
+    maxTotal: 1000
+    maxWaitMillis: 1000
+    minEvictableIdleTimeMillis: 300000
+    numTestsPerEvictionRun: 1024
+    testOnBorrow: true
+    testWhileIdle: true
+    timeBetweenEvictionRunsMillis: 30000
+    timeout: 5000
+
+
+
+
+
