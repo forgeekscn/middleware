@@ -28,14 +28,20 @@ public class MessageDto implements Serializable {
 
     private String consumer;
 
-    private String  phone;
+    private String phone;
 
     private Date createTime;
 
     private Map remark;
 
-    public MessageDto(String id , String title){
+    public MessageDto(String id, String title) {
         this.id = id;
         this.title = title;
+    }
+
+    public MessageDto(String id, String title, String phone) {
+        this.id = id;
+        this.title = title;
+        this.phone = phone;
     }
 }

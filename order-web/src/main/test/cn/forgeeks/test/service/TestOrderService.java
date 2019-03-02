@@ -2,6 +2,7 @@ package cn.forgeeks.test.service;
 
 
 import cn.forgeeks.service.common.MainApplication;
+import cn.forgeeks.service.common.common.Consts;
 import cn.forgeeks.service.common.common.RedisUtil;
 import cn.forgeeks.service.common.dto.MessageDto;
 import cn.forgeeks.service.common.service.ElasticService;
@@ -26,6 +27,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -35,6 +37,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 
 @Slf4j
@@ -51,7 +54,8 @@ public class TestOrderService {
 
     @Autowired
     ElasticService elasticService;
-
+    @Autowired
+    RabbitTemplate rabbitTemplate;
     @Autowired
     private RestHighLevelClient client;
 
@@ -147,6 +151,15 @@ public class TestOrderService {
         page.setResults(results);
 
         log.info("结果：[{}]", page);
+    }
+
+    @Test
+    public void rabbitmqTest() {
+        log.info("");
+        // rabbitMqService.sendAlllog();
+
+        MessageDto param = new MessageDto(new Random().nextInt(9999) + "", "和超", "12312312");
+        rabbitTemplate.convertAndSend(Consts.EXCHANGE_MYTH_TOPIC, Consts.QUEUE_MYTH_ORDER_ALL, param);
     }
 
 
