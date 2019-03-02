@@ -1,5 +1,6 @@
 package cn.forgeeks.service.common.service;
 
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -65,9 +66,10 @@ public class ElasticUtils implements Closeable {
 
     private String INDEX_KEY = "index";
     private String TYPE_KEY = "type";
-    private String INDEX = "spider";
-    private String TYPE = "doc";
-    private String TIMESTAMP = "timestamp";
+
+    private String INDEX = "order";
+    private String TYPE = "xiaomi";
+    private String TIMESTAMP = "_score";
 
     private String[] hosts;
 
@@ -339,7 +341,7 @@ public class ElasticUtils implements Closeable {
             if (e.status() == RestStatus.CONFLICT) {
                 log.error("版本异常！");
             }
-            log.error("文档新增失败！");
+            log.error("文档新增失败！[{}]", e);
         }
     }
 
@@ -893,4 +895,84 @@ public class ElasticUtils implements Closeable {
         page.setResults(results);
         return page;
     }
-} 
+
+    public JSON matchQueryByIndex(String index, JSON queryJson, int pageNum, int pageSize) {
+        return null;
+//
+//        if (Objects.isNull(pageNum)) {
+//            pageNum = 1;
+//        }
+//        if (Objects.isNull(pageSize)) {
+//            pageSize = 10;
+//        }
+//
+//        // term query(检索level)
+//        TermQueryBuilder levelQuery = null;
+//        if (StringUtils.isNotBlank(level)) {
+//            levelQuery = QueryBuilders.termQuery("level", level.toLowerCase());
+//        }
+//        // match query(检索message)
+//        MatchQueryBuilder messageQuery = null;
+//        if (StringUtils.isNotBlank(messageKey)) {
+//            messageQuery = QueryBuilders.matchQuery("message", messageKey);
+//        }
+//        // range query(检索timestamp)
+//        RangeQueryBuilder timeQuery = QueryBuilders.rangeQuery(TIMESTAMP);
+//        timeQuery.format("epoch_millis");
+//        if (Objects.isNull(startTime)) {
+//            if (Objects.isNull(endTime)) {
+//                timeQuery = null;
+//            } else {
+//                timeQuery.lte(endTime);
+//            }
+//        } else {
+//            if (Objects.isNull(endTime)) {
+//                timeQuery.gte(startTime);
+//            } else {
+//                timeQuery.gte(startTime).lte(endTime);
+//            }
+//        }
+//        // 将上述三个query组合
+//        BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
+//        if (Objects.nonNull(levelQuery)) {
+//            boolQuery.must(levelQuery);
+//        }
+//        if (Objects.nonNull(messageQuery)) {
+//            boolQuery.must(messageQuery);
+//        }
+//        if (Objects.nonNull(timeQuery)) {
+//            boolQuery.must(timeQuery);
+//        }
+//
+//
+//        QueryBuilder query = generateQuery(level, messageKey, startTime, endTime);
+//
+//
+//        FieldSortBuilder order = SortBuilders.fieldSort(TIMESTAMP).order(SortOrder.DESC);
+//        SearchSourceBuilder searchBuilder = new SearchSourceBuilder();
+//        searchBuilder.timeout(TimeValue.timeValueMinutes(2L));
+//        searchBuilder.query(query);
+//        searchBuilder.sort(order);
+//        searchBuilder.from(pageNum - 1).size(pageSize);
+//
+//        SearchRequest request = new SearchRequest(INDEX).types(TYPE);
+//        request.source(searchBuilder);
+//        SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+//        SearchHits hits = response.getHits();
+//        int totalRecord = (int) hits.getTotalHits();
+//        List<Map<String, Object>> results = new ArrayList<>();
+//        for (SearchHit hit : hits.getHits()) {
+//            results.add(hit.getSourceAsMap());
+//        }
+//
+//        Page<Map<String, Object>> page = new Page<>();
+//        page.setPageNum(pageNum);
+//        page.setPageSize(pageSize);
+//        page.setTotalRecord(totalRecord);
+//        page.setResults(results);
+//        return page;
+
+    }
+
+
+}
