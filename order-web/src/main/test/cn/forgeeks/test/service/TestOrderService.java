@@ -88,13 +88,13 @@ public class TestOrderService {
 
     @Test
     public void elasticTest() {
-        // elasticService.getInfo();
-        // elasticService.createIndex();
-//        elasticService.clearIndex();
-//        for (int i = 0; i <= 100; i++) {
-//            elasticService.createDoc();
-//        }
-//        elasticService.queryPageByConditions();
+         elasticService.getInfo();
+         elasticService.createIndex();
+        elasticService.clearIndex();
+        for (int i = 0; i <= 100; i++) {
+            elasticService.createDoc();
+        }
+        elasticService.queryPageByConditions();
 
 
         // 测试复杂查询
@@ -115,7 +115,7 @@ public class TestOrderService {
         // range query(检索timestamp)
         RangeQueryBuilder timeQuery = QueryBuilders.rangeQuery("createTime");
         // timeQuery.format("");
-        timeQuery.gte("2019-03-02T07:02:53.100+0000").lte("2019-03-02T07:02:53.148+0000");
+        timeQuery.gte("2019-02-02T07:02:53.100+0000").lte("2019-05-02T07:02:53.148+0000");
 
         // 将上述三个query组合
         BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
