@@ -18,15 +18,15 @@ spring:
             prefetch: 4
     datasource:
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/awesome?characterEncoding=utf8
+        url: jdbc:mysql://192.168.99.100:3306/db_geekplatform?characterEncoding=utf8
         username: root
         password: root
 
 elasticsearch:
     host: 127.0.0.1
 redis:
-    hostName: localhost
-    port: 6379
+    hostName: 192.168.99.100
+    port: 32775
     password: ''
     maxActive: ''
     maxIdle: 300
@@ -50,17 +50,18 @@ redis:
 ###########################################  公司运行环境 #########################################
 
 ---
+
 server:
     port: 8180
 spring:
-    profiles: lumi
+    profiles: work
     application:
         name: order-web
     common:
-        host: 127.0.0.1
-        port: 5672
-        username: myuser
-        password: mypass
+        host: 192.168.99.100
+        username: guest
+        password: guest
+        port: 32790
         publisher-confirms: true
         virtual-host: /
         listener:
@@ -69,15 +70,16 @@ spring:
             prefetch: 4
     datasource:
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/awesome?characterEncoding=utf8
-        password: root
+        url: jdbc:mysql://192.168.99.100:3306/db_geekplatform?characterEncoding=utf8
         username: root
+        password: root
+
 elasticsearch:
     host: 127.0.0.1
 redis:
-    hostName: localhost
-    password:
-    port: 6389
+    hostName: 192.168.99.100
+    port: 32775
+    password: ''
     maxActive: ''
     maxIdle: 300
     maxTotal: 1000
