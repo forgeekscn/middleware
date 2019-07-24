@@ -15,19 +15,16 @@
             <groupId>cn.forgeeks.awesome</groupId>
             <artifactId>redis-service</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
        <!-- <dependency>
             <groupId>cn.forgeeks.awesome</groupId>
             <artifactId>es-service</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>-->
         <dependency>
             <groupId>cn.forgeeks.awesome</groupId>
             <artifactId>mq-service</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 
