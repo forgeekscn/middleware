@@ -16,16 +16,49 @@
             <artifactId>redis-service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-       <!-- <dependency>
-            <groupId>cn.forgeeks.awesome</groupId>
-            <artifactId>es-service</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>-->
+        <!-- <dependency>
+             <groupId>cn.forgeeks.awesome</groupId>
+             <artifactId>es-service</artifactId>
+             <version>1.0-SNAPSHOT</version>
+         </dependency>-->
         <dependency>
             <groupId>cn.forgeeks.awesome</groupId>
             <artifactId>mq-service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>cn.forgeeks.awesome</groupId>
+            <artifactId>kafka-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.5.3.RELEASE</version>
+                <configuration>
+                    <mainClass>cn.forgeeks.service.common.MainApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

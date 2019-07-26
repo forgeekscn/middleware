@@ -6,7 +6,7 @@ spring:
     profiles: home
     application:
         name: order-web
-    common:
+    rabbit:
         host: 192.168.99.100
         username: admin
         password: admin
@@ -22,6 +22,22 @@ spring:
         url: jdbc:mysql://192.168.99.100:3306/db_geekplatform?characterEncoding=utf8
         username: root
         password: root
+    kafka:
+        bootstrap-servers: 192.168.99.100:9092
+        consumer:
+            auto-commit-interval: 100
+            auto-offset-reset: earliest
+            enable-auto-commit: true
+            group-id: test-consumer-group
+            key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            value-deserializer: 'org.apache.kafka.common.serialization.StringDeserializer'
+        producer:
+            batch-size: 16384
+            buffer-memory: 33554432
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            retries: 0
+            value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
 
 #elasticsearch:
 #    host: 127.0.0.1

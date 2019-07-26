@@ -5,8 +5,8 @@ import cn.forgeeks.service.common.MainApplication;
 import cn.forgeeks.service.common.common.Consts;
 import cn.forgeeks.service.common.common.RedisUtil;
 import cn.forgeeks.service.common.dto.MessageDto;
-import cn.forgeeks.service.common.service.ElasticService;
-import cn.forgeeks.service.common.service.Page;
+//import cn.forgeeks.service.common.service.ElasticService;
+//import cn.forgeeks.service.common.service.Page;
 import cn.forgeeks.service.common.service.RabbitMqService;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -52,8 +52,8 @@ public class TestOrderService {
     @Autowired
     RabbitMqService rabbitMqService;
 
-    @Autowired
-    ElasticService elasticService;
+//    @Autowired
+//    ElasticService elasticService;
     @Autowired
     RabbitTemplate rabbitTemplate;
     @Autowired
@@ -86,72 +86,72 @@ public class TestOrderService {
         log.info("rs [{}]", rs);
     }
 
-    @Test
-    public void elasticTest() {
-         elasticService.getInfo();
-         elasticService.createIndex();
-        elasticService.clearIndex();
-        for (int i = 0; i <= 100; i++) {
-            elasticService.createDoc();
-        }
-        elasticService.queryPageByConditions();
+//    @Test
+//    public void elasticTest() {
+//         elasticService.getInfo();
+//         elasticService.createIndex();
+//        elasticService.clearIndex();
+//        for (int i = 0; i <= 100; i++) {
+//            elasticService.createDoc();
+//        }
+//        elasticService.queryPageByConditions();
+//
+//
+//        // 测试复杂查询
+//        JSON param = new JSONObject();
+//        JSON rs = elasticService.matchQueryByIndex("order", param, 1, 10);
+//    }
 
-
-        // 测试复杂查询
-        JSON param = new JSONObject();
-        JSON rs = elasticService.matchQueryByIndex("order", param, 1, 10);
-    }
-
-    @Test
-    public void elasticTest2() throws IOException {
-        // term query(检索level)
-        TermsQueryBuilder levelQuery = null;
-        levelQuery = QueryBuilders.termsQuery("level", "info");
-
-        // match query(检索message)
-        MatchQueryBuilder messageQuery = null;
-        messageQuery = QueryBuilders.matchQuery("message", "工单");
-
-        // range query(检索timestamp)
-        RangeQueryBuilder timeQuery = QueryBuilders.rangeQuery("createTime");
-        // timeQuery.format("");
-        timeQuery.gte("2019-02-02T07:02:53.100+0000").lte("2019-05-02T07:02:53.148+0000");
-
-        // 将上述三个query组合
-        BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
-
-        boolQuery.must(levelQuery).boost(1);
-        boolQuery.must(messageQuery).boost(2);
-        boolQuery.must(timeQuery).boost(3);
-
-        QueryBuilder query = boolQuery;
-
-        FieldSortBuilder order = SortBuilders.fieldSort("createTime").order(SortOrder.DESC);
-
-        SearchSourceBuilder searchBuilder = new SearchSourceBuilder();
-        searchBuilder.timeout(TimeValue.timeValueMinutes(2L));
-        searchBuilder.query(query);
-        searchBuilder.sort(order);
-        searchBuilder.from(0).size(10);
-
-        SearchRequest request = new SearchRequest("order");
-        request.source(searchBuilder);
-        SearchResponse response = client.search(request, RequestOptions.DEFAULT);
-        SearchHits hits = response.getHits();
-        int totalRecord = (int) hits.getTotalHits();
-        List<Map<String, Object>> results = new ArrayList<>();
-        for (SearchHit hit : hits.getHits()) {
-            results.add(hit.getSourceAsMap());
-        }
-
-        Page<Map<String, Object>> page = new Page<>();
-        page.setPageNum(1);
-        page.setPageSize(10);
-        page.setTotalRecord(totalRecord);
-        page.setResults(results);
-
-        log.info("结果：[{}]", page);
-    }
+//    @Test
+//    public void elasticTest2() throws IOException {
+//        // term query(检索level)
+//        TermsQueryBuilder levelQuery = null;
+//        levelQuery = QueryBuilders.termsQuery("level", "info");
+//
+//        // match query(检索message)
+//        MatchQueryBuilder messageQuery = null;
+//        messageQuery = QueryBuilders.matchQuery("message", "工单");
+//
+//        // range query(检索timestamp)
+//        RangeQueryBuilder timeQuery = QueryBuilders.rangeQuery("createTime");
+//        // timeQuery.format("");
+//        timeQuery.gte("2019-02-02T07:02:53.100+0000").lte("2019-05-02T07:02:53.148+0000");
+//
+//        // 将上述三个query组合
+//        BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
+//
+//        boolQuery.must(levelQuery).boost(1);
+//        boolQuery.must(messageQuery).boost(2);
+//        boolQuery.must(timeQuery).boost(3);
+//
+//        QueryBuilder query = boolQuery;
+//
+//        FieldSortBuilder order = SortBuilders.fieldSort("createTime").order(SortOrder.DESC);
+//
+//        SearchSourceBuilder searchBuilder = new SearchSourceBuilder();
+//        searchBuilder.timeout(TimeValue.timeValueMinutes(2L));
+//        searchBuilder.query(query);
+//        searchBuilder.sort(order);
+//        searchBuilder.from(0).size(10);
+//
+//        SearchRequest request = new SearchRequest("order");
+//        request.source(searchBuilder);
+//        SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+//        SearchHits hits = response.getHits();
+//        int totalRecord = (int) hits.getTotalHits();
+//        List<Map<String, Object>> results = new ArrayList<>();
+//        for (SearchHit hit : hits.getHits()) {
+//            results.add(hit.getSourceAsMap());
+//        }
+//
+//        Page<Map<String, Object>> page = new Page<>();
+//        page.setPageNum(1);
+//        page.setPageSize(10);
+//        page.setTotalRecord(totalRecord);
+//        page.setResults(results);
+//
+//        log.info("结果：[{}]", page);
+//    }
 
     @Test
     public void rabbitmqTest() {

@@ -24,34 +24,34 @@ public class RabbitConfig {
 
     Logger log = LoggerFactory.getLogger(RabbitConfig.class);
 
-    @Value("${spring.common.host}")
+    @Value("${spring.rabbit.host}")
     private String addresses;
 
-    @Value("${spring.common.port}")
+    @Value("${spring.rabbit.port}")
     private String port;
 
-    @Value("${spring.common.username}")
+    @Value("${spring.rabbit.username}")
     private String username;
 
-    @Value("${spring.common.password}")
+    @Value("${spring.rabbit.password}")
     private String password;
 
-    @Value("${spring.common.virtual-host}")
+    @Value("${spring.rabbit.virtual-host}")
     private String virtualHost;
 
-    @Value("${spring.common.publisher-confirms}")
+    @Value("${spring.rabbit.publisher-confirms}")
     private boolean publisherConfirms;
 
 
-    @Value("${spring.common.listener.concurrency}")
+    @Value("${spring.rabbit.listener.concurrency}")
     private Integer  concurrency;
 
 
-    @Value("${spring.common.listener.max-concurrency}")
+    @Value("${spring.rabbit.listener.max-concurrency}")
     private Integer  maxConcurrency;
 
 
-    @Value("${spring.common.listener.prefetch}")
+    @Value("${spring.rabbit.listener.prefetch}")
     private Integer  prefetch;
 
     @Bean
