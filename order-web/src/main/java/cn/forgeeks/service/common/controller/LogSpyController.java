@@ -3,12 +3,13 @@ package cn.forgeeks.service.common.controller;
 import cn.forgeeks.service.common.common.*;
 import cn.forgeeks.service.common.dto.MessageSendDto;
 import cn.forgeeks.service.common.dto.ResultDto;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.lang.reflect.Method;
 
 /**
  *  队列测试类
@@ -54,8 +55,11 @@ public class LogSpyController {
     /**
      *  模拟秒杀场景消峰减压
      */
-    @RequestMapping(value = "/createOrder" )
-    public ResultDto createOrder(@RequestBody  MessageSendDto  param){
+    @RequestMapping(value = "/createOrder" ,method = RequestMethod.POST)
+//    @ApiImplicitParam(name = "MessageSendDto", value = "测试消息体MessageSendDto", required = true,
+//            dataTypeClass = cn.forgeeks.service.common.dto.MessageSendDto.class,dataType = "MessageSendDto")
+    public ResultDto createOrder(/*@ApiParam(required=true, name="param", value="测试消息体")*/
+                                     @RequestBody  MessageSendDto  param){
         rabbitOrderSender.sendOrderMsg( param.getMessage() ) ;
         return new ResultDto(200,"Success.");
     }
