@@ -1,5 +1,8 @@
 package cn.forgeeks.service.common.controller;
 
+import cn.forgeeks.service.common.dto.MessageSendDto;
+import cn.forgeeks.service.common.dto.ResultDto;
+import cn.forgeeks.service.common.service.ElasticService;
 import cn.forgeeks.service.common.service.OrderService;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.ApiOperation;
@@ -15,8 +18,13 @@ public class DataResourceController {
     @Autowired
     OrderService orderService;
 
-    //@ApiOperation(nickname = "测试数据源" ,notes = "测试数据源", value = "测试数据源")
-//    @ResponseBody
+    @Autowired
+    ElasticService elasticService;
+
+
+
+    @ApiOperation(nickname = "测试数据源" ,notes = "测试数据源", value = "测试数据源")
+    @ResponseBody
     @RequestMapping(value = "/test" , method = RequestMethod.POST)
     public JSONObject test(@RequestBody String obj){
         JSONObject rs = new JSONObject();
@@ -25,5 +33,20 @@ public class DataResourceController {
         log.info("### test {}",rs);
         return rs;
     }
+
+    @ApiOperation(nickname = "测试es" ,notes = "测试es", value = "测试es")
+    @ResponseBody
+    @PostMapping(value = "/test2" )
+    public ResultDto testEs(@RequestBody MessageSendDto message){
+        String str="{\n" +
+                "  \"query\": {\n" +
+                "    \"match_all\": {}\n" +
+                "  }\n" +
+                "}";
+//        elasticService.matchQueryByIndex(".kibana_1",JSONObject.parseObject(str),1,10);
+        elasticService.getInfo();
+        return new ResultDto(200,"Success.");
+    }
+
 
 }

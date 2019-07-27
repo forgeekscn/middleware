@@ -22,7 +22,7 @@ public class OrderService {
     @Autowired
     RabbitLogSender rabbitLogSender;
 
-    @Autowired
+    @Autowired(required = false)
     KafkaSender kafkaSender;
 
     @Autowired

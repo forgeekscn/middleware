@@ -6,6 +6,8 @@ spring:
     profiles: home
     application:
         name: order-web
+    main:
+        allow-bean-definition-overriding: true
     rabbit:
         host: 192.168.99.100
         username: admin
@@ -48,8 +50,9 @@ mybatis:
     mybatis.type-aliases-package: cn.forgeeks.service.common.mapper
 
 
-#elasticsearch:
-#    host: 127.0.0.1
+elasticsearch:
+    host: 192.168.99.100
+    port: 9200
 
 redis:
     hostName: 192.168.99.100

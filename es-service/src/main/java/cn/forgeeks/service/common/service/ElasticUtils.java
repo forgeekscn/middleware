@@ -1,6 +1,7 @@
 package cn.forgeeks.service.common.service;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -48,6 +49,9 @@ import org.elasticsearch.search.sort.FieldSortBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.io.Closeable;
@@ -56,10 +60,11 @@ import java.util.*;
 
 
 @Slf4j
-@Service
+@Service("ElasticUtils")
 public class ElasticUtils implements Closeable {
 
 
+    @Qualifier("restHighLevelClient")
     @Autowired
     private RestHighLevelClient client;
 
@@ -70,8 +75,6 @@ public class ElasticUtils implements Closeable {
     private String INDEX = "order";
     private String TYPE = "xiaomi";
     private String TIMESTAMP = "_score";
-
-    private String[] hosts;
 
     public void setINDEX_KEY(String INDEX_KEY) {
         this.INDEX_KEY = INDEX_KEY;
@@ -93,9 +96,6 @@ public class ElasticUtils implements Closeable {
         this.TIMESTAMP = TIMESTAMP;
     }
 
-    public void setHosts(String[] hosts) {
-        this.hosts = hosts;
-    }
 
     @Override
     public void close() throws IOException {
@@ -107,15 +107,13 @@ public class ElasticUtils implements Closeable {
     /**
      * 初始化配置
      */
-    public void configure() {
-        Validate.noNullElements(hosts, "Elastic连接地址不能为空！");
-        HttpHost[] httpHosts = Arrays.stream(hosts).map(host -> {
-            String[] hostParts = host.split(":");
-            String hostName = hostParts[0];
-            int port = Integer.parseInt(hostParts[1]);
-            return new HttpHost(hostName, port, "http");
-        }).filter(Objects::nonNull).toArray(HttpHost[]::new);
-        client = new RestHighLevelClient(RestClient.builder(httpHosts));
+    @Bean("restHighLevelClient")
+    public RestHighLevelClient configure(@Value("${elasticsearch.host}")String host ,
+                                         @Value("${elasticsearch.port}") Integer port) {
+        HttpHost httpHosts =  new HttpHost(host, port, "http");
+        RestHighLevelClient client=  new RestHighLevelClient(RestClient.builder(httpHosts));
+        log.info("########################## es搜索配置陈功 {}  #################", JSONObject.toJSONString(client));
+        return client;
     }
 
     /**

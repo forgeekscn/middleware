@@ -4,23 +4,21 @@ import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.*;
 
-@Service
+@Service("ElasticService")
 @Slf4j
 public class ElasticService {
 
-    @Autowired
-    LogDao logDao;
-
+    @Qualifier("ElasticUtils")
     @Autowired
     ElasticUtils elasticUtils;
 
     public void getInfo() {
-        logDao.getInfo();
         try {
             elasticUtils.createIndex("product");
             log.info("exists [{}]", elasticUtils.checkIndexExists("product"));

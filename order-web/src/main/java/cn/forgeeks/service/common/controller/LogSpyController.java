@@ -3,12 +3,15 @@ package cn.forgeeks.service.common.controller;
 import cn.forgeeks.service.common.common.*;
 import cn.forgeeks.service.common.dto.MessageSendDto;
 import cn.forgeeks.service.common.dto.ResultDto;
+import cn.forgeeks.service.common.service.ElasticService;
 import cn.forgeeks.service.common.service.OrderService;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Method;
@@ -36,9 +39,21 @@ public class LogSpyController {
     @Autowired
     RabbitFanoutSender rabbitFanoutSender;
 
-
     @Autowired
     OrderService orderService;
+
+    @Qualifier("ElasticService")
+    @Autowired
+    ElasticService elasticService;
+
+    @ApiOperation(value ="es测试", notes = "es测试")
+    @PostMapping(value = "/test22")
+    public ResultDto test22(@RequestBody MessageSendDto message){
+        elasticService.getInfo();
+        return new ResultDto(200,"Success.");
+    }
+
+
 
 
     /**
