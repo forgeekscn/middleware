@@ -3,6 +3,8 @@ package cn.forgeeks.service.common.service;
 import cn.forgeeks.awesome.kafka.common.KafkaSender;
 import cn.forgeeks.service.common.common.RabbitLogSender;
 import cn.forgeeks.service.common.common.RedisUtil;
+import cn.forgeeks.service.common.mapper.log.OrderLogMapper;
+import cn.forgeeks.service.common.mapper.platform.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,12 @@ public class OrderService {
     @Autowired
     KafkaSender kafkaSender;
 
+    @Autowired
+    OrderLogMapper orderLogMapper;
+
+    @Autowired
+    UserMapper userMapper;
+
     public void test(){
         Object obj = redisUtil.get("k1");
         log.info("### redisUtil test [{}]",obj);
@@ -32,4 +40,11 @@ public class OrderService {
     }
 
 
+    public Integer getOrderLogCount(){
+        return orderLogMapper.getOrderLogCount("");
+    }
+
+    public Integer getUserCount(){
+        return userMapper.getUserCount("");
+    }
 }

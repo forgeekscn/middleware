@@ -176,8 +176,27 @@
             <version>2.2.7.RELEASE</version>
         </dependency>
         <!-- ++++++++++++++++++++++++++++++++++++++++++++  -->
+        <!-- jdbcTemple  -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
         <!-- ++++++++++++++++++++++++++++++++++++++++++++  -->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
         <!-- ++++++++++++++++++++++++++++++++++++++++++++  -->
+        <!-- druid阿里巴巴数据库连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.19</version>
+        </dependency>
+
+
         <!-- ++++++++++++++++++++++++++++++++++++++++++++  -->
         <!-- ++++++++++++++++++++++++++++++++++++++++++++  -->
 

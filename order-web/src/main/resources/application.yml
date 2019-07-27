@@ -18,10 +18,16 @@ spring:
             max-concurrency: 20
             prefetch: 4
     datasource:
-        driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://192.168.99.100:3306/db_geekplatform?characterEncoding=utf8
-        username: root
-        password: root
+        dbgeekplatform:
+            driver-class-name: com.mysql.jdbc.Driver
+            url: jdbc:mysql://192.168.99.100:3306/db_geekplatform?characterEncoding=utf8
+            username: root
+            password: root
+        dblog:
+            driver-class-name: com.mysql.jdbc.Driver
+            url: jdbc:mysql://192.168.99.100:3306/db_log?characterEncoding=utf8
+            username: root
+            password: root
     kafka:
         bootstrap-servers: 192.168.99.100:9092
         consumer:
@@ -37,6 +43,9 @@ spring:
             key-serializer: org.apache.kafka.common.serialization.StringSerializer
             retries: 0
             value-serializer: org.apache.kafka.common.serialization.StringSerializer
+mybatis:
+    mapper-locations: classpath*:mapper/*/*.xml
+    mybatis.type-aliases-package: cn.forgeeks.service.common.mapper
 
 
 #elasticsearch:

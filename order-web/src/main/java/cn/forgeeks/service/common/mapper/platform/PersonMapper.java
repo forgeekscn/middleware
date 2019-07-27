@@ -1,4 +1,4 @@
-package cn.forgeeks.service.common.mapper;
+package cn.forgeeks.service.common.mapper.platform;
 
 import cn.forgeeks.service.common.dto.PersonDO;
 import org.apache.ibatis.annotations.*;
