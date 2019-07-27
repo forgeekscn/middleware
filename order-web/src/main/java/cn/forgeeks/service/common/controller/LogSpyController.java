@@ -3,6 +3,8 @@ package cn.forgeeks.service.common.controller;
 import cn.forgeeks.service.common.common.*;
 import cn.forgeeks.service.common.dto.MessageSendDto;
 import cn.forgeeks.service.common.dto.ResultDto;
+import cn.forgeeks.service.common.service.OrderService;
+import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +36,11 @@ public class LogSpyController {
     @Autowired
     RabbitFanoutSender rabbitFanoutSender;
 
+
+    @Autowired
+    OrderService orderService;
+
+
     /**
      * 模拟生产特定类型消息并消费
      */
@@ -60,6 +67,12 @@ public class LogSpyController {
 //            dataTypeClass = cn.forgeeks.service.common.dto.MessageSendDto.class,dataType = "MessageSendDto")
     public ResultDto createOrder(/*@ApiParam(required=true, name="param", value="测试消息体")*/
                                      @RequestBody  MessageSendDto  param){
+
+        JSONObject rs = new JSONObject();
+        rs.put("getOrderLogCount",orderService.getOrderLogCount());
+        rs.put("getUserCount",orderService.getUserCount());
+        log.info("### test {}",rs);
+
         rabbitOrderSender.sendOrderMsg( param.getMessage() ) ;
         return new ResultDto(200,"Success.");
     }

@@ -1,5 +1,6 @@
 package cn.forgeeks.service.common.configure;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -16,6 +17,7 @@ import javax.sql.DataSource;
 
 //表示这个类为一个配置类
 @Configuration
+@Slf4j
 // 配置mybatis的接口类放的地方
 @MapperScan(basePackages = "cn.forgeeks.service.common.mapper.log",
         sqlSessionFactoryRef = "dblogSqlSessionFactory")
@@ -57,6 +59,7 @@ public class DataSourceDbLogConfig {
     @Primary
     public SqlSessionTemplate dblogSqlSessionTemplate(
             @Qualifier("dblogSqlSessionFactory") SqlSessionFactory sessionfactory) {
+        log.info("### dbgeekplatformSqlSessionFactory 数据源配置陈功");
         return new SqlSessionTemplate(sessionfactory);
     }
 }
