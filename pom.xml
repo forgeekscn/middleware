@@ -16,6 +16,7 @@
         <module>mail-service</module>
         <module>utils-service</module>
         <module>kafka-service</module>
+        <module>fastdfs-service</module>
     </modules>
 
     <parent>
@@ -118,11 +119,14 @@
         <!-- ++++++++++++++++++++++++++++++++++++++++++++  -->
 
         <!-- ++++++++++++++  FastDFS  ++++++++++++++++++++  -->
-        <dependency>
+       <dependency>
             <groupId>com.github.tobato</groupId>
             <artifactId>fastdfs-client</artifactId>
             <version>1.25.2-RELEASE</version>
         </dependency>
+
+
+
         <!-- ++++++++++++++++++++++++++++++++++++++++++++  -->
 
         <!-- ++++++++++++++++++  Mail  +++++++++++++++++++++  -->
@@ -203,6 +207,29 @@
         </dependency>
 
 
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++  -->
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency><!--
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>-->
+        <dependency>
+            <groupId>org.csource</groupId>
+            <artifactId>fastdfs-client-java</artifactId>
+            <version>1.27-RELEASE</version>
+        </dependency>
+
+
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++  -->
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++  -->
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++  -->
+        <!-- ++++++++++++++++++++++++++++++++++++++++++++  -->
         <!-- ++++++++++++++++++++++++++++++++++++++++++++  -->
         <!-- ++++++++++++++++++++++++++++++++++++++++++++  -->
 

@@ -2,13 +2,14 @@ package cn.forgeeks.service.common;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * SpringBoot service.
  */
+//@Import(FdfsClientConfig.class)
 @EnableScheduling
 @SpringBootApplication
 @ComponentScan(basePackages = "cn.forgeeks")
