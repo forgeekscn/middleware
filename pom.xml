@@ -17,6 +17,7 @@
         <module>utils-service</module>
         <module>kafka-service</module>
         <module>fastdfs-service</module>
+        <module>testnull-web</module>
     </modules>
 
     <parent>
