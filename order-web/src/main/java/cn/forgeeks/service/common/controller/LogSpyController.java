@@ -1,20 +1,18 @@
 package cn.forgeeks.service.common.controller;
 
+import cn.forgeeks.awesome.redis.common.*;
 import cn.forgeeks.service.common.common.*;
 import cn.forgeeks.service.common.dto.MessageSendDto;
 import cn.forgeeks.service.common.dto.ResultDto;
 import cn.forgeeks.service.common.service.ElasticService;
 import cn.forgeeks.service.common.service.OrderService;
+import cn.forgeeks.service.redis.common.*;
 import com.alibaba.fastjson.JSONObject;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
-
-import java.lang.reflect.Method;
 
 /**
  *  队列测试类

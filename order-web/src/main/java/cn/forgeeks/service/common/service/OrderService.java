@@ -1,16 +1,13 @@
 package cn.forgeeks.service.common.service;
 
 import cn.forgeeks.awesome.kafka.common.KafkaSender;
-import cn.forgeeks.service.common.common.RabbitLogSender;
-import cn.forgeeks.service.common.common.RedisUtil;
+import cn.forgeeks.awesome.redis.common.RabbitLogSender;
+import cn.forgeeks.awesome.redis.common.RedisUtil;
 import cn.forgeeks.service.common.mapper.log.OrderLogMapper;
 import cn.forgeeks.service.common.mapper.platform.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.InitBinder;
-
-import javax.annotation.Resource;
 
 @Slf4j
 @Service

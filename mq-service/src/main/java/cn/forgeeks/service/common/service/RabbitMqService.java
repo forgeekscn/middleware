@@ -1,6 +1,6 @@
 package cn.forgeeks.service.common.service;
 
-import cn.forgeeks.service.common.common.RabbitLogSender;
+import cn.forgeeks.awesome.redis.common.RabbitLogSender;
 import cn.forgeeks.service.common.dto.MessageDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

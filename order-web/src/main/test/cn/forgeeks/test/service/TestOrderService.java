@@ -2,27 +2,14 @@ package cn.forgeeks.test.service;
 
 
 import cn.forgeeks.service.common.MainApplication;
-import cn.forgeeks.service.common.common.Consts;
-import cn.forgeeks.service.common.common.RedisUtil;
+import cn.forgeeks.awesome.redis.common.Consts;
+import cn.forgeeks.awesome.redis.common.RedisUtil;
 import cn.forgeeks.service.common.dto.MessageDto;
 //import cn.forgeeks.service.common.service.ElasticService;
 //import cn.forgeeks.service.common.service.Page;
 import cn.forgeeks.service.common.service.RabbitMqService;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import org.elasticsearch.action.search.SearchRequest;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.common.unit.TimeValue;
-import org.elasticsearch.index.query.*;
-import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.SearchHits;
-import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.elasticsearch.search.sort.FieldSortBuilder;
-import org.elasticsearch.search.sort.SortBuilders;
-import org.elasticsearch.search.sort.SortOrder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,10 +20,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 

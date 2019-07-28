@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="cn.forgeeks.awesome.feature.mapper.platform.OrderMapper">
+
+    <select id="getCountOrder" resultType="int">
+        select count(1) from order ;
+    </select>
+
+    <select id="insertOrder" parameterType="cn.forgeeks.awesome.feature.dto.OrderDto" resultType="java.lang.Integer">
+        insert into tb_order (order_name , order_no ) values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.orderName} , #{item.orderNo})
+        </foreach>
+    </select>
+
+
+</mapper>

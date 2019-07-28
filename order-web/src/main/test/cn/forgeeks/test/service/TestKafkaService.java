@@ -3,10 +3,6 @@ package cn.forgeeks.test.service;
 
 import cn.forgeeks.awesome.kafka.common.KafkaSender;
 import cn.forgeeks.service.common.MainApplication;
-import cn.forgeeks.service.common.common.Consts;
-import cn.forgeeks.service.common.common.RedisUtil;
-import cn.forgeeks.service.common.dto.MessageDto;
-import cn.forgeeks.service.common.service.RabbitMqService;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.junit.After;
@@ -20,8 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.Random;
 
 //import cn.forgeeks.service.common.service.ElasticService;
 //import cn.forgeeks.service.common.service.Page;
