@@ -1,9 +1,13 @@
 package cn.forgeeks.awesome.thread;
 
+import com.alibaba.fastjson.JSONObject;
 import javafx.concurrent.Worker;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
 
 import java.util.HashSet;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
 
@@ -12,46 +16,102 @@ import java.util.concurrent.locks.ReentrantLock;
  * maximumPoolSize：线程池最大线程数，这个参数也是一个非常重要的参数，它表示在线程池中最多能创建多少个线程；
  * keepAliveTime：表示线程没有任务执行时最多保持多久时间会终止。默认情况下，只有当线程池中的线程数大于corePoolSize时，keepAliveTime才会起作用，直到线程池中的线程数不大于corePoolSize，即当线程池中的线程数大于corePoolSize时，如果一个线程空闲的时间达到keepAliveTime，则会终止，直到线程池中的线程数不超过corePoolSize。但是如果调用了allowCoreThreadTimeOut(boolean)方法，在线程池中的线程数不大于corePoolSize时，keepAliveTime参数也会起作用，直到线程池中的线程数为0；
  * unit：参数keepAliveTime的时间单位，有7种取值，在TimeUnit类中有7种静态属性：
-     * TimeUnit.DAYS;               //天
-     * TimeUnit.HOURS;             //小时
-     * TimeUnit.MINUTES;           //分钟
-     * TimeUnit.SECONDS;           //秒
-     * TimeUnit.MILLISECONDS;      //毫秒
-     * TimeUnit.MICROSECONDS;      //微妙
-     * TimeUnit.NANOSECONDS;       //纳秒
- *
+ * TimeUnit.DAYS;               //天
+ * TimeUnit.HOURS;             //小时
+ * TimeUnit.MINUTES;           //分钟
+ * TimeUnit.SECONDS;           //秒
+ * TimeUnit.MILLISECONDS;      //毫秒
+ * TimeUnit.MICROSECONDS;      //微妙
+ * TimeUnit.NANOSECONDS;       //纳秒
+ * <p>
  * workQueue：一个阻塞队列，用来存储等待执行的任务，这个参数的选择也很重要，会对线程池的运行过程产生重大影响，一般来说，这里的阻塞队列有以下几种选择：
-     *  ArrayBlockingQueue;
-     * LinkedBlockingQueue;
-     * SynchronousQueue;
-     * ArrayBlockingQueue和PriorityBlockingQueue使用较少，一般使用LinkedBlockingQueue和Synchronous。线程池的排队策略与BlockingQueue有关。
- *
+ * ArrayBlockingQueue;
+ * LinkedBlockingQueue;
+ * SynchronousQueue;
+ * ArrayBlockingQueue和PriorityBlockingQueue使用较少，一般使用LinkedBlockingQueue和Synchronous。线程池的排队策略与BlockingQueue有关。
+ * <p>
  * threadFactory：线程工厂，主要用来创建线程；
  * handler：表示当拒绝处理任务时的策略，有以下四种取值：
-     * ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出RejectedExecutionException异常。
-     * ThreadPoolExecutor.DiscardPolicy：也是丢弃任务，但是不抛出异常。
-     * ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）
-     * ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务
+ * ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出RejectedExecutionException异常。
+ * ThreadPoolExecutor.DiscardPolicy：也是丢弃任务，但是不抛出异常。
+ * ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）
+ * ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务
  */
+
+@Slf4j
 public class ThreadPoolUtil {
 
-    private ExecutorService pool ;
+    private ExecutorService pool;
 
-
-    public  void getNewCachedThreadPool(){
-        ExecutorService pool = Executors.newCachedThreadPool();
-        for(int i = 0 ; i < 50 ; i++){
-            pool.submit(new ThreadRunner((i + 1)));
-        }
-        pool.shutdown();
+    private void initDefaultThreadPool() {
+        pool = new ThreadPoolExecutor(10, 10, 0L,
+                TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(100000),
+                new ThreadPoolExecutor.CallerRunsPolicy());
+        startTime = System.currentTimeMillis();
+        log.info("### 线程池创建 {}", JSONObject.toJSONString(pool));
     }
 
-    public void  getNewFixedThreadPool(){
-        ExecutorService pool = Executors.newFixedThreadPool(4);
-        for(int i = 0 ; i < 50 ; i++){
-            pool.submit(new ThreadRunner((i + 1)));
-        }
+    private void submit(Runnable runnable) {
+        pool.submit(runnable);
+    }
+
+    private <T> void submit(Callable<T> callable) {
+        pool.submit(callable);
+    }
+
+    private Long startTime;
+
+
+    private void waitingForClose() {
+
+        log.info("### waitingForClose BEFORE => {} ", JSONObject.toJSONString(pool));
         pool.shutdown();
+        try {
+            boolean loop = true;
+            do {
+                loop = !pool.awaitTermination(200, TimeUnit.MILLISECONDS);
+            } while (loop);
+        } catch (InterruptedException e) {
+            log.error("### sleep error", e);
+        }
+        Long endTime = System.currentTimeMillis();
+        long a = endTime - startTime;
+        log.info("####### Closed AFTER time => {}ms", a);
+    }
+
+
+
+
+    @Test
+    public  void test() throws InterruptedException {
+        ThreadLocal<Integer> threadLocal = new ThreadLocal<>();
+        ExecutorService pool = new ThreadPoolExecutor(
+                1,
+                1,
+                50000L,
+                TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<Runnable>(1024),
+                new ThreadFactory() {
+                    private AtomicInteger number = new AtomicInteger(0);
+                    @Override
+                    public Thread newThread(Runnable runnable) {
+                        return new Thread(runnable, "admin" + "-" + number.getAndIncrement());
+                    }
+                },
+                new ThreadPoolExecutor.AbortPolicy());
+        pool.execute(()->{
+            System.out.println(Thread.currentThread().getName());
+            threadLocal.set(5);
+            System.out.println(threadLocal.get());
+            threadLocal.remove();
+        });
+        Thread.sleep(3000l);
+        System.out.println("-------------------");
+        pool.execute(()->{
+            System.out.println(Thread.currentThread().getName());
+            System.out.println(threadLocal.get());
+            threadLocal.remove();
+        });
     }
 
 }
