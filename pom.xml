@@ -17,7 +17,6 @@
         <module>utils-service</module>
         <module>kafka-service</module>
         <module>fastdfs-service</module>
-        <module>feature-web</module>
     </modules>
 
     <parent>

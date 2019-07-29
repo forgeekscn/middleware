@@ -47,7 +47,7 @@ spring:
             value-serializer: org.apache.kafka.common.serialization.StringSerializer
 mybatis:
     mapper-locations: classpath*:mapper/*/*.xml
-    mybatis.type-aliases-package: cn.forgeeks.service.common.mapper
+    mybatis.type-aliases-package: cn.forgeeks.awesome.order.mapper
 
 
 elasticsearch:
@@ -82,34 +82,64 @@ fdfs:
 
 ---
 
+
 server:
-    port: 8180
+    port: 8181
 spring:
     profiles: work
     application:
         name: order-web
-    common:
+    main:
+        allow-bean-definition-overriding: true
+    rabbit:
         host: 192.168.99.100
-        username: guest
-        password: guest
-        port: 32790
+        username: admin
+        password: admin
+        port: 5672
         publisher-confirms: true
-        virtual-host: /
+        virtual-host: my_vhost
         listener:
             concurrency: 10
             max-concurrency: 20
             prefetch: 4
     datasource:
-        driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://192.168.99.100:3306/db_geekplatform?characterEncoding=utf8
-        username: root
-        password: root
+        dbgeekplatform:
+            driver-class-name: com.mysql.jdbc.Driver
+            jdbc-url: jdbc:mysql://192.168.99.100:3306/db_geekplatform?characterEncoding=utf8
+            username: root
+            password: root
+        dblog:
+            driver-class-name: com.mysql.jdbc.Driver
+            jdbc-url: jdbc:mysql://192.168.99.100:3306/db_geek_log?characterEncoding=utf8
+            username: root
+            password: root
+    kafka:
+        bootstrap-servers: 192.168.99.100:9092
+        consumer:
+            auto-commit-interval: 100
+            auto-offset-reset: earliest
+            enable-auto-commit: true
+            group-id: test-consumer-group
+            key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            value-deserializer: 'org.apache.kafka.common.serialization.StringDeserializer'
+        producer:
+            batch-size: 16384
+            buffer-memory: 33554432
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            retries: 0
+            value-serializer: org.apache.kafka.common.serialization.StringSerializer
+mybatis:
+    mapper-locations: classpath*:mapper/*/*.xml
+    mybatis.type-aliases-package: cn.forgeeks.awesome.order.mapper
+
 
 elasticsearch:
-    host: 127.0.0.1
+    host: 192.168.99.100
+    port: 9200
+
 redis:
     hostName: 192.168.99.100
-    port: 32775
+    port: 6379
     password: ''
     maxActive: ''
     maxIdle: 300
@@ -122,7 +152,13 @@ redis:
     timeBetweenEvictionRunsMillis: 30000
     timeout: 5000
 
-
-
+fdfs:
+    soTimeout: 1500
+    connectTimeout: 600
+    thumbImage:             #缩略图生成参数
+        width: 150
+        height: 150
+    trackerList:            #TrackerList参数,支持多个
+        - 192.168.99.100:22122
 
 

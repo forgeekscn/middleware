@@ -1,10 +1,6 @@
 package cn.forgeeks.awesome.redis.common;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
@@ -15,31 +11,24 @@ import java.util.concurrent.TimeUnit;
 /**
  * Redis util.
  */
-@Service("RedisUtil")
 public class RedisUtil {
 
-    @Qualifier("functionDomainRedisTemplate")
-    @Autowired
-    RedisTemplate<String, Object> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     public void setRedisTemplate(RedisTemplate<String, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 
-    public boolean expire(String key, long time , TimeUnit timeUnit) {
+    public boolean expire(String key, long time) {
         try {
             if (time > 0) {
-                redisTemplate.expire(key, time, timeUnit);
+                redisTemplate.expire(key, time, TimeUnit.SECONDS);
             }
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
-    }
-
-    public boolean expire(String key, long time) {
-       return expire(key, time,TimeUnit.SECONDS);
     }
 
     /**
@@ -220,14 +209,10 @@ public class RedisUtil {
      * @return true 成功 false失败
      */
     public boolean hset(String key, String item, Object value, long time) {
-       return hset(key,item,value,time,TimeUnit.SECONDS);
-    }
-
-    public boolean hset(String key, String item, Object value, long time , TimeUnit timeUtil) {
         try {
             redisTemplate.opsForHash().put(key, item, value);
             if (time > 0) {
-                expire(key, time , timeUtil);
+                expire(key, time);
             }
             return true;
         } catch (Exception e) {
@@ -235,7 +220,6 @@ public class RedisUtil {
             return false;
         }
     }
-
 
     /**
      * 删除hash表中的值
@@ -467,9 +451,7 @@ public class RedisUtil {
     public boolean lSet(String key, List<Object> value, long time) {
         try {
             redisTemplate.opsForList().rightPushAll(key, value);
-            if (time > 0) {
-                expire(key, time);
-            }
+            if (time > 0) expire(key, time);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

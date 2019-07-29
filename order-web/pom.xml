@@ -48,7 +48,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>1.5.3.RELEASE</version>
                 <configuration>
-                    <mainClass>cn.forgeeks.service.common.MainApplication</mainClass>
+                    <mainClass>cn.forgeeks.awesome.mq.MainApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

@@ -91,7 +91,7 @@ public class RedisConfig {
         return JedisConnectionFactory;
     }
 
-    @Bean("functionDomainRedisTemplate")
+    @Bean
     public RedisTemplate<String, Object> functionDomainRedisTemplate(RedisConnectionFactory
                                                                          jedisConnectionFactory) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
@@ -113,4 +113,11 @@ public class RedisConfig {
         log.info("redis缓存配置中");
     }
 
+    @Bean(name = "redisUtil")
+    public RedisUtil redisUtil(RedisTemplate<String, Object> functionDomainRedisTemplate) {
+        RedisUtil redisUtil = new RedisUtil();
+        redisUtil.setRedisTemplate(functionDomainRedisTemplate);
+        log.info("###################   redis缓存配置完成   #######################");
+        return redisUtil;
+    }
 }
