@@ -13,7 +13,6 @@ import java.util.Map;
  * Message dto.
  */
 @AllArgsConstructor
-@NoArgsConstructor
 @ToString
 @Data
 public class MessageDto implements Serializable {
@@ -33,6 +32,9 @@ public class MessageDto implements Serializable {
     private Date createTime;
 
     private Map remark;
+
+    public MessageDto() {
+    }
 
     public MessageDto(String id, String title) {
         this.id = id;
