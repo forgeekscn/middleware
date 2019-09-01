@@ -1,4 +1,4 @@
-package cn.forgeeks.awesome.mq.common;
+package cn.forgeeks.awesome.mq.common.listener;
 
 import cn.forgeeks.awesome.common.dto.MessageDto;
 import com.rabbitmq.client.Channel;

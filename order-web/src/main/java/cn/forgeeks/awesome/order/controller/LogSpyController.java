@@ -3,7 +3,7 @@ package cn.forgeeks.awesome.order.controller;
 import cn.forgeeks.awesome.common.dto.MessageSendDto;
 import cn.forgeeks.awesome.common.dto.ResultDto;
 import cn.forgeeks.awesome.es.common.ElasticService;
-import cn.forgeeks.awesome.mq.common.*;
+import cn.forgeeks.awesome.mq.common.sender.*;
 import cn.forgeeks.awesome.order.service.OrderService;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.ApiOperation;
@@ -97,7 +97,7 @@ public class LogSpyController {
 //    public ResultDto createOrderForNewMsg() throws IOException {
 //        Connection conn  =  rabbitConfig.connectionFactory().createConnection();
 //        Channel channel = conn.createChannel(true) ;
-//        GetResponse response = channel.basicGet(Consts.QUEUE_MYTH_ORDER_ALL,true);
+//        GetResponse response = channel.basicGet(MqConsts.QUEUE_MYTH_ORDER_ALL,true);
 //        log.info("pull消息结果[{}]",new String(response.getBody()));
 //        channel.basicAck(response.getEnvelope().getDeliveryTag(),false);
 //        try {

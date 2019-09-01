@@ -3,7 +3,7 @@ package cn.forgeeks.awesome.test;
 
 import cn.forgeeks.awesome.common.dto.MessageDto;
 import cn.forgeeks.awesome.mq.MainApplication;
-import cn.forgeeks.awesome.mq.common.Consts;
+import cn.forgeeks.awesome.mq.common.config.MqConsts;
 import cn.forgeeks.awesome.mq.service.RabbitMqService;
 import cn.forgeeks.awesome.redis.common.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -140,7 +140,7 @@ public class TestOrderService {
         // rabbitMqService.sendAlllog();
 
         MessageDto param = new MessageDto(new Random().nextInt(9999) + "", "和超", "12312312");
-        rabbitTemplate.convertAndSend(Consts.EXCHANGE_MYTH_TOPIC, Consts.QUEUE_MYTH_ORDER_ALL, param);
+        rabbitTemplate.convertAndSend(MqConsts.EXCHANGE_MYTH_TOPIC, MqConsts.QUEUE_MYTH_ORDER_ALL, param);
     }
 
 

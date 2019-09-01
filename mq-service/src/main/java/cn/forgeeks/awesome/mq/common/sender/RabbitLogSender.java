@@ -1,6 +1,7 @@
-package cn.forgeeks.awesome.mq.common;
+package cn.forgeeks.awesome.mq.common.sender;
 
 import cn.forgeeks.awesome.common.dto.MessageDto;
+import cn.forgeeks.awesome.mq.common.config.MqConsts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -23,7 +24,7 @@ public class RabbitLogSender {
      * Send a message with topic exchange and ordinary info binding key.
      */
     public void send(MessageDto message){
-        this.rabbitTemplate.convertAndSend(Consts.EXCHANGE_MYTH_TOPIC, Consts.ROUTING_WITH_REGULER_MODULE_ALL_MYTH_LOG_ALL,message);
+        this.rabbitTemplate.convertAndSend(MqConsts.EXCHANGE_MYTH_TOPIC, MqConsts.ROUTING_WITH_REGULER_MODULE_ALL_MYTH_LOG_ALL,message);
         log.info("全局日志生产者:Message is pushed : [{}].",message);
     }
 

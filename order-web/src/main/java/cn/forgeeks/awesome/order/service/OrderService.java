@@ -1,7 +1,7 @@
 package cn.forgeeks.awesome.order.service;
 
 import cn.forgeeks.awesome.kafka.common.KafkaSender;
-import cn.forgeeks.awesome.mq.common.RabbitLogSender;
+import cn.forgeeks.awesome.mq.common.sender.RabbitLogSender;
 import cn.forgeeks.awesome.order.mapper.log.OrderLogMapper;
 import cn.forgeeks.awesome.order.mapper.platform.UserMapper;
 import cn.forgeeks.awesome.redis.common.RedisUtil;

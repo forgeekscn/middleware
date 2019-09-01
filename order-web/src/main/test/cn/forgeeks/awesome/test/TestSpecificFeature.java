@@ -5,6 +5,7 @@ import cn.forgeeks.awesome.common.dto.ResultDto;
 import cn.forgeeks.awesome.order.RedisApp;
 import cn.forgeeks.awesome.redis.common.RedisUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONPath;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +18,7 @@ import java.util.*;
 
 @SpringBootTest( webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT , classes = RedisApp.class)
 @RunWith(SpringRunner.class)
-@ActiveProfiles("work")
+@ActiveProfiles("home")
 @Slf4j
 public class TestSpecificFeature {
 

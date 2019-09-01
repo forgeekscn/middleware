@@ -1,6 +1,8 @@
-package cn.forgeeks.awesome.mq.common;
+package cn.forgeeks.awesome.mq.common.sender;
 
 import cn.forgeeks.awesome.common.dto.MessageDto;
+import cn.forgeeks.awesome.mq.common.config.MqConsts;
+import cn.forgeeks.awesome.mq.common.listener.RabbitOrderListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -19,7 +21,7 @@ public class RabbitOrderSender {
      * 发送订单消息
      */
     public void sendOrderMsg(MessageDto messageDto){
-        rabbitTemplate.convertAndSend(  Consts.EXCHANGE_MYTH_TOPIC , Consts.QUEUE_MYTH_ORDER_ALL , messageDto);
+        rabbitTemplate.convertAndSend(  MqConsts.EXCHANGE_MYTH_TOPIC , MqConsts.QUEUE_MYTH_ORDER_ALL , messageDto);
         log.info("秒杀订单生产者:[{}]",messageDto);
     }
 

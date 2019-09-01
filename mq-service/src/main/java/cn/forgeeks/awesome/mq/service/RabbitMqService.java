@@ -1,7 +1,7 @@
 package cn.forgeeks.awesome.mq.service;
 
 import cn.forgeeks.awesome.common.dto.MessageDto;
-import cn.forgeeks.awesome.mq.common.RabbitLogSender;
+import cn.forgeeks.awesome.mq.common.sender.RabbitLogSender;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
