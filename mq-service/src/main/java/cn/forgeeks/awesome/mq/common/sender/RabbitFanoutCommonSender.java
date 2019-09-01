@@ -7,12 +7,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class RabbitDeadLetterSender extends AbstractRabbitCommonSender {
+public class RabbitFanoutCommonSender extends AbstractRabbitCommonSender {
 
     @Override
     public void send(MessageDto messageDto) {
-        sendByConfirmMode(MqConsts.EXCHANGE_DEADLETTER, MqConsts.QUEUE_DEADLETTER_RECEIVER, messageDto,10);
-        log.info("延时消息进入队列 {} " , messageDto);
+        sendBySimpleMode(MqConsts.EXCHANGE_FANOUT_COMMON, MqConsts.QUEUE_FANOUT_COMMON, messageDto );
     }
 
 

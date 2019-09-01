@@ -10,14 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component(value = "RabbitDealetterProcessConsumer")
-// @RabbitListener(queues= MqConsts.QUEUE_DEADLETTER_PROCESS)
 public class RabbitDealetterProcessConsumer extends AbstarctCommonConsumer {
-
-//    @RabbitHandler
-//    public void process(MessageDto messageDto) {
-//        log.info("延迟消息到期 {}, 开始处理  {} ", DateUtils.getFormatDateStr() , JSONObject.toJSONString(messageDto));
-//    }
-
 
     @Override
     public void processMessage(Message message, Channel channel) {

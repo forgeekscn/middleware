@@ -95,7 +95,6 @@ public class RabbitConfig {
     public FanoutExchange fanoutExchange() {
         return new FanoutExchange(MqConsts.EXCHANGE_FANOUT);
     }
-
     /**
      * 构建直连Direct交换机
      */
@@ -240,6 +239,35 @@ public class RabbitConfig {
     public SimpleMessageListenerContainer buildDeadQueueConsumer( @Qualifier("RabbitDealetterProcessConsumer") AbstarctCommonConsumer abstarctCommonConsumer  ) {
         return getContainer(abstarctCommonConsumer,processDeadLetterQueue());
     }
+
+
+
+
+
+
+    @Bean
+    public Queue queueCommonFanout() {
+        return QueueBuilder.durable(MqConsts.QUEUE_FANOUT_COMMON).build();
+    }
+
+
+    @Bean
+    public SimpleMessageListenerContainer buildNackQueueConsumer( @Qualifier("RabbitNackMessageProcessConsumer") AbstarctCommonConsumer abstarctCommonConsumer  ) {
+        return getContainer(abstarctCommonConsumer, queueCommonFanout());
+    }
+
+    @Bean
+    public Binding queueCommonFanoutBinding() {
+        return BindingBuilder.bind(queueCommonFanout()).to(fanoutExchangeCommon());
+    }
+
+    @Bean
+    public FanoutExchange fanoutExchangeCommon() {
+        return new FanoutExchange(MqConsts.EXCHANGE_FANOUT_COMMON,true,false);
+    }
+
+
+
 
 
     public SimpleMessageListenerContainer getContainer(AbstarctCommonConsumer abstarctCommonConsumer, Queue queue ) {

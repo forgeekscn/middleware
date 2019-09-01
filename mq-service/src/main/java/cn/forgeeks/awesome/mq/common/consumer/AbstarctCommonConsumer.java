@@ -24,7 +24,6 @@ public  abstract class AbstarctCommonConsumer implements ChannelAwareMessageList
         byte[] body = message.getBody();
         MessageDto msg = byteArrayToObject(body);
         try {
-            log.info("消费者监听器接收到一条消息  =>  {} " , msg);
             processMessage(message , channel);
             channel.basicAck(tag, true);
         } catch (Exception e) {

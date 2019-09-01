@@ -41,8 +41,13 @@ public abstract class AbstractRabbitCommonSender implements RabbitTemplate.Confi
 
     }
 
-    void sendBySimpleMode(String exchange , String key, String message) {
-        this.rabbitTemplate.convertAndSend(exchange, key, message);
+    void sendBySimpleMode(String exchange , String key, MessageDto msg) {
+        // 投递方式持久化
+        this.rabbitTemplate.convertAndSend(exchange, key, msg , message -> {
+            message.getMessageProperties().setDeliveryMode(MessageDeliveryMode.PERSISTENT);
+            return message;
+        } );
+        log.info("发送方 成功发送 {} " , JSONObject.toJSONString(msg));
     }
 
 

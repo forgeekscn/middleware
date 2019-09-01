@@ -8,6 +8,7 @@ public class MqConsts {
     public static final String EXCHANGE_MYTH_TOPIC = "EXCHANGE.MYTH.TOPIC";
     public static final String EXCHANGE_DIRECT ="EXCHANGE.DIRECT" ;
     public static final String EXCHANGE_FANOUT ="EXCHANGE.FANOUT" ;
+    public static final String EXCHANGE_FANOUT_COMMON ="EXCHANGE.FANOUT.COMMON" ;
     public static final String EXCHANGE_DIRECT_ORDER_DEADLETTER ="EXCHANGE.DIRECT_ORDER_DEADLETTER" ;
 
     // 日志队列
@@ -23,6 +24,7 @@ public class MqConsts {
     // 构建广播队列
     public static final String QUEUE_FANOUT_A = "QUEUE.FANOUT.A";
     public static final String QUEUE_FANOUT_B ="QUEUE.FANOUT.B" ;
+    public static final String QUEUE_FANOUT_COMMON ="QUEUE.FANOUT.COMMON" ;
 
     // 订单服务队列
     public static final String  QUEUE_NOMAL_ORDER = "QUEUE.QUEUE_NOMAL_ORDER";
