@@ -14,6 +14,7 @@ spring:
         password: admin
         port: 5672
         publisher-confirms: true
+        publisher-returns: true
         virtual-host: my_vhost
         listener:
             concurrency: 10

@@ -1,8 +1,6 @@
 package cn.forgeeks.awesome.mq.common.config;
 
-import cn.forgeeks.awesome.mq.common.listener.RabbitOrderListener;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import cn.forgeeks.awesome.mq.common.consumer.AbstarctCommonConsumer;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -44,6 +42,9 @@ public class RabbitConfig {
     @Value("${spring.rabbit.publisher-confirms}")
     public boolean publisherConfirms;
 
+    @Value("${spring.rabbit.publisher-returns}")
+    public boolean publisherReturns;
+
 
     @Value("${spring.rabbit.listener.concurrency}")
     public Integer concurrency;
@@ -63,15 +64,20 @@ public class RabbitConfig {
         cachingConnectionFactory.setUsername(username);
         cachingConnectionFactory.setPassword(password);
         cachingConnectionFactory.setVirtualHost(virtualHost);
+
         // 设置为发送方确认模式
         cachingConnectionFactory.setPublisherConfirms(publisherConfirms);
+        cachingConnectionFactory.setPublisherReturns(publisherReturns);
+
         return cachingConnectionFactory;
     }
 
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public RabbitTemplate getRabbitTemplate() {
-        return new RabbitTemplate(connectionFactory());
+        RabbitTemplate rabbitTemplate= new RabbitTemplate(connectionFactory());
+        rabbitTemplate.setMandatory(true);
+        return  rabbitTemplate;
     }
 
     /**
@@ -231,23 +237,27 @@ public class RabbitConfig {
      * 构建秒杀订单特有的监听器
      */
     @Bean
-    public SimpleMessageListenerContainer orderListenerContainer(@Qualifier("rabbitOrderListener") RabbitOrderListener rabbitOrderListener,
-                                                                 Queue queueOrderAll, ConnectionFactory connectionFactory) {
-        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-        container.setConnectionFactory(connectionFactory);
-        container.setMessageConverter(new Jackson2JsonMessageConverter());
+    public SimpleMessageListenerContainer buildDeadQueueConsumer( @Qualifier("RabbitDealetterProcessConsumer") AbstarctCommonConsumer abstarctCommonConsumer  ) {
+        return getContainer(abstarctCommonConsumer,processDeadLetterQueue());
+    }
 
+
+    public SimpleMessageListenerContainer getContainer(AbstarctCommonConsumer abstarctCommonConsumer, Queue queue ) {
+        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+        container.setConnectionFactory(connectionFactory());
+        container.setMessageConverter(new Jackson2JsonMessageConverter());
         // 并发配置
         container.setConcurrentConsumers(concurrency);
         container.setMaxConcurrentConsumers(maxConcurrency);
         container.setPrefetchCount(prefetch);
-
-        container.setQueues(queueOrderAll);
-        container.setMessageListener(rabbitOrderListener);
+        container.setQueues(queue);
+        container.setMessageListener(abstarctCommonConsumer);
         //  手动确认ack机制 防止消息丢失
         container.setAcknowledgeMode(AcknowledgeMode.MANUAL);
         return container;
     }
+
+
 
 
     /**

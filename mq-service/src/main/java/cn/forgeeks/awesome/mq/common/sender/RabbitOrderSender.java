@@ -2,7 +2,6 @@ package cn.forgeeks.awesome.mq.common.sender;
 
 import cn.forgeeks.awesome.common.dto.MessageDto;
 import cn.forgeeks.awesome.mq.common.config.MqConsts;
-import cn.forgeeks.awesome.mq.common.listener.RabbitOrderListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class RabbitOrderSender {
 
-    Logger log = LoggerFactory.getLogger(RabbitOrderListener.class);
+    Logger log = LoggerFactory.getLogger(RabbitOrderSender.class);
 
     @Autowired
     RabbitTemplate rabbitTemplate;

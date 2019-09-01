@@ -25,7 +25,7 @@ public class TestMqDealetterSpecific {
     public void test1(){
         MessageDto messageDto = new MessageDto();
         messageDto.setContent("淘宝订单1111111");
-        deadLetterSender.send(messageDto,  10);
+        deadLetterSender.send(messageDto);
         try {
             Thread.sleep(100*1000);
         } catch (InterruptedException e) {

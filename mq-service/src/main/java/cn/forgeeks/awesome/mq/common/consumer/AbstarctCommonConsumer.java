@@ -1,4 +1,4 @@
-package cn.forgeeks.awesome.mq.common.listener;
+package cn.forgeeks.awesome.mq.common.consumer;
 
 import cn.forgeeks.awesome.common.dto.MessageDto;
 import com.rabbitmq.client.Channel;
@@ -15,16 +15,17 @@ import java.io.ObjectInputStream;
  * 专门监听秒杀消费过程
  */
 @Slf4j
-@Component("rabbitOrderListener")
-public class RabbitOrderListener implements ChannelAwareMessageListener {
+//@Component("rabbitOrderListener")
+public  abstract class AbstarctCommonConsumer implements ChannelAwareMessageListener {
 
     @Override
     public void onMessage(Message message, Channel channel) throws IOException {
         Long tag = message.getMessageProperties().getDeliveryTag();
         byte[] body = message.getBody();
         MessageDto msg = byteArrayToObject(body);
-        log.info("消费者[{}]:接收到秒杀订单:[{}]", tag, msg);
         try {
+            log.info("消费者监听器接收到一条消息  =>  {} " , msg);
+            processMessage(message , channel);
             channel.basicAck(tag, true);
         } catch (Exception e) {
             channel.basicReject(tag, false);
@@ -32,6 +33,8 @@ public class RabbitOrderListener implements ChannelAwareMessageListener {
         }
 
     }
+
+    public  abstract void processMessage(Message message, Channel channel) ;
 
     /**
      * Byte数组转对象
