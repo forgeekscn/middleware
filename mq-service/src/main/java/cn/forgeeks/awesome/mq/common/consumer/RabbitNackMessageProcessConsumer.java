@@ -17,7 +17,7 @@ public class RabbitNackMessageProcessConsumer extends AbstarctCommonConsumer {
     @Override
     public void processMessage(Message message, Channel channel) {
         MessageDto rs = byteArrayToObject( message.getBody());
-        log.info("处理普通消息{} , 消息详情 {} ", DateUtils.getFormatDateStr() , JSONObject.toJSONString(rs));
+        log.info("111处理普通消息{} , 消息详情 {} ", DateUtils.getFormatDateStr() , JSONObject.toJSONString(rs));
     }
 
 
