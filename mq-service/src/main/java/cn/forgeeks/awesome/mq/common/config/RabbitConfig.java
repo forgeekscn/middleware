@@ -167,6 +167,25 @@ public class RabbitConfig {
         return QueueBuilder.durable(MqConsts.QUEUE_FANOUT_B).build();
     }
 
+
+    @Bean
+    public Queue queueNoConsumer() {
+        return new Queue(MqConsts.QUEUE_NOCONSUMER , true , false, false);
+        // return QueueBuilder.durable(MqConsts.QUEUE_NOCONSUMER).build();
+    }
+
+    @Bean
+    public Binding bindingQueueNoconsumer( ) {
+        return BindingBuilder.bind(queueNoConsumer()).to(directExchange()).with("queue.noconsumer");
+    }
+
+    @Bean
+    public SimpleMessageListenerContainer buildQueueNoConsumer( @Qualifier("RabbitTestNoConsumer") AbstarctCommonConsumer abstarctCommonConsumer  ) {
+        return getContainer(abstarctCommonConsumer,queueNoConsumer());
+    }
+
+
+
     /**
      * 构建直连DIRECt绑定
      */

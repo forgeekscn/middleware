@@ -26,6 +26,7 @@ public class MqConsts {
     public static final String QUEUE_FANOUT_B ="QUEUE.FANOUT.B" ;
     public static final String QUEUE_FANOUT_COMMON ="QUEUE.FANOUT.COMMON" ;
 
+    public static final String QUEUE_NOCONSUMER="queueNoconsumer" ;
     // 订单服务队列
     public static final String  QUEUE_NOMAL_ORDER = "QUEUE.QUEUE_NOMAL_ORDER";
     public static final String  QUEUE_DEADLETTER_ORDER = "QUEUE.QUEUE_DEADLETTER_ORDER";

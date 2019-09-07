@@ -27,8 +27,8 @@ public  abstract class AbstarctCommonConsumer implements ChannelAwareMessageList
             processMessage(message , channel);
             channel.basicAck(tag, true);
         } catch (Exception e) {
-            channel.basicReject(tag, false);
-            log.error("秒杀失败:[{}]", e);
+            channel.basicNack(tag, false,true);
+            log.error("消息处理失败 nack后重新入队:[{}]", e);
         }
 
     }

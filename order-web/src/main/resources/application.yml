@@ -79,6 +79,9 @@ fdfs:
     trackerList:            #TrackerList参数,支持多个
         - 192.168.99.100:22122
 
+queue:
+    noconsumer:
+        status: no
 ###########################################  公司运行环境 #########################################
 
 ---
@@ -102,7 +105,7 @@ spring:
         listener:
             concurrency: 10
             max-concurrency: 20
-            prefetch: 4
+            prefetch: 10
     datasource:
         dbgeekplatform:
             driver-class-name: com.mysql.jdbc.Driver
