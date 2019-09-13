@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 @Slf4j
-// @ConditionalOnProperty( value = "${queue.noconsumer.status}" , havingValue = "no")
+@ConditionalOnProperty( value = "queue.noconsumer.status" , havingValue = "false")
 @Component(value = "RabbitTestNoConsumer")
 public class RabbitTestNoConsumer extends AbstarctCommonConsumer {
     @Override

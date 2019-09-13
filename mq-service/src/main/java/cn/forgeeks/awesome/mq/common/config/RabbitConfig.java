@@ -1,6 +1,7 @@
 package cn.forgeeks.awesome.mq.common.config;
 
 import cn.forgeeks.awesome.mq.common.consumer.AbstarctCommonConsumer;
+import cn.forgeeks.awesome.mq.common.consumer.RabbitTestNoConsumer;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -10,6 +11,7 @@ import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -170,8 +172,8 @@ public class RabbitConfig {
 
     @Bean
     public Queue queueNoConsumer() {
-        return new Queue(MqConsts.QUEUE_NOCONSUMER , true , false, false);
-        // return QueueBuilder.durable(MqConsts.QUEUE_NOCONSUMER).build();
+         return new Queue(MqConsts.QUEUE_NOCONSUMER , true , false, false);
+//        return QueueBuilder.durable(MqConsts.QUEUE_NOCONSUMER).build();
     }
 
     @Bean
@@ -179,10 +181,11 @@ public class RabbitConfig {
         return BindingBuilder.bind(queueNoConsumer()).to(directExchange()).with("queue.noconsumer");
     }
 
-    @Bean
-    public SimpleMessageListenerContainer buildQueueNoConsumer( @Qualifier("RabbitTestNoConsumer") AbstarctCommonConsumer abstarctCommonConsumer  ) {
-        return getContainer(abstarctCommonConsumer,queueNoConsumer());
-    }
+//    @Bean
+//     @ConditionalOnBean(name = "RabbitTestNoConsumer" )
+//    public SimpleMessageListenerContainer buildQueueNoConsumer( @Qualifier("RabbitTestNoConsumer") AbstarctCommonConsumer abstarctCommonConsumer  ) {
+//        return getContainer(abstarctCommonConsumer,queueNoConsumer());
+//    }
 
 
 

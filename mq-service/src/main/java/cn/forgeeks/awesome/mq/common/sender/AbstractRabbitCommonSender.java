@@ -47,7 +47,7 @@ public abstract class AbstractRabbitCommonSender implements RabbitTemplate.Confi
             message.getMessageProperties().setDeliveryMode(MessageDeliveryMode.PERSISTENT);
             return message;
         } );
-        log.info("发送方 成功发送 {} " , JSONObject.toJSONString(msg));
+        log.info("22222发送方 成功发送 {} " , JSONObject.toJSONString(msg));
     }
 
 
