@@ -8,22 +8,22 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-@Component
+//@Component
 @Slf4j
 public class KafkaReceiver {
 
-    @KafkaListener(topics = {"TOPIC_KAFKA_TEST"})
-    public void listen(ConsumerRecord<?, ?> record) {
-
-        Optional<?> kafkaMessage = Optional.ofNullable(record.value());
-
-        if (kafkaMessage.isPresent()) {
-
-            Object message = kafkaMessage.get();
-
-            log.info("----------------- record =" + record);
-            log.info("------------------ message =" + message);
-        }
-
-    }
+//    @KafkaListener(topics = {"TOPIC_KAFKA_TEST"})
+//    public void listen(ConsumerRecord<?, ?> record) {
+//
+//        Optional<?> kafkaMessage = Optional.ofNullable(record.value());
+//
+//        if (kafkaMessage.isPresent()) {
+//
+//            Object message = kafkaMessage.get();
+//
+//            log.info("----------------- record =" + record);
+//            log.info("------------------ message =" + message);
+//        }
+//
+//    }
 }
