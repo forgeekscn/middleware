@@ -194,6 +194,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
         <!-- ++++++++++++++++++++++++++++++++++++++++++++  -->
         <!-- druid阿里巴巴数据库连接池 -->
         <dependency>
@@ -240,7 +245,6 @@
             </plugin>
         </plugins>
     </build>-->
-<!--
     <build>
         <plugins>
             <plugin>
@@ -252,6 +256,5 @@
                 </configuration>
             </plugin>
         </plugins>
-    </build>-->
-
+    </build>
 </project>

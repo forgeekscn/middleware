@@ -24,45 +24,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
-            <!-- Docker maven plugin -->
-          <!--  <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>1.0.0</version>
-                <executions>
-                    <execution>
-                        <id>build-image</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    &lt;!&ndash; 镜像名称&ndash;&gt;
-                    <imageName>${project.artifactId}</imageName>
-                    &lt;!&ndash; 镜像标签&ndash;&gt;
-                    <imageTags>
-                        &lt;!&ndash;可以指定多个标签    建议弄成自增序列或者时间戳类型，用于区分版本&ndash;&gt;
-                        <imageTag>${maven.build.timestamp}</imageTag>
-                    </imageTags>
-                    <baseImage>java</baseImage>
-                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
-                    &lt;!&ndash; dockerfile文件路径&ndash;&gt;
-                    <dockerDirectory>src/main/docker</dockerDirectory>
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
-                </configuration>
-            </plugin>-->
-            <!-- Docker maven plugin -->
-
-
         </plugins>
     </build>
 

@@ -1,4 +1,4 @@
-package cn.forgeeks.awesome.test;
+package cn.forgeeks.awesome.kafka.test;
 
 import cn.forgeeks.awesome.common.dto.MessageDto;
 import cn.forgeeks.awesome.common.dto.ResultDto;

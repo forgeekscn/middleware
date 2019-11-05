@@ -1,4 +1,4 @@
-package cn.forgeeks.awesome.test;
+package cn.forgeeks.awesome.kafka.test;
 
 import cn.forgeeks.awesome.order.RedisApp;
 import lombok.extern.slf4j.Slf4j;

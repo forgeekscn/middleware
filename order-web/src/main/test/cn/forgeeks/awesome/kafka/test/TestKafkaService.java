@@ -1,8 +1,9 @@
-package cn.forgeeks.awesome.test;
+package cn.forgeeks.awesome.kafka.test;
 
 
 import cn.forgeeks.awesome.kafka.common.KafkaSender;
 import cn.forgeeks.awesome.mq.MainApplication;
+import cn.forgeeks.awesome.order.KafkaApp;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.junit.After;
@@ -22,7 +23,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
 @Slf4j
-@SpringBootTest(classes = MainApplication.class)
+@SpringBootTest(classes = KafkaApp.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles(value = "home")
 public class TestKafkaService {
@@ -44,7 +45,7 @@ public class TestKafkaService {
 
     @Test
     public void kafkaTest() {
-        ConfigurableApplicationContext context = SpringApplication.run(MainApplication.class, "");
+        ConfigurableApplicationContext context = SpringApplication.run(KafkaApp.class, "");
         KafkaSender sender = context.getBean(KafkaSender.class);
         for (int i = 0; i < 3; i++) {
             sender.send();
