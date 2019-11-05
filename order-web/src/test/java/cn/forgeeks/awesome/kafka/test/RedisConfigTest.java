@@ -1,4 +1,4 @@
-package cn.forgeeks.awesome;
+package cn.forgeeks.awesome.kafka.test;
 
 import cn.forgeeks.awesome.redis.common.spconf.com.domain.UserVo;
 import cn.forgeeks.awesome.redis.common.spconf.com.service.RedisService;
