@@ -12,10 +12,10 @@ import org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration;
      exclude = {DataSourceAutoConfiguration.class , RedisAutoConfiguration.class, KafkaAutoConfiguration.class,
      RabbitAutoConfiguration.class , ElasticsearchAutoConfiguration.class }
  */
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class , KafkaAutoConfiguration.class,
-        RabbitAutoConfiguration.class , ElasticsearchAutoConfiguration.class },
-        scanBasePackages = { "cn.forgeeks.awesome.redis.common"  }
-)
+//@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class , KafkaAutoConfiguration.class,
+//        RabbitAutoConfiguration.class , ElasticsearchAutoConfiguration.class },
+//        scanBasePackages = { "cn.forgeeks.awesome.redis.common"  }
+//)
 public class RedisApp {
     public static void main(String[] args) {
         SpringApplication.run(RedisApp.class);

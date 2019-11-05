@@ -20,10 +20,20 @@ spring:
             concurrency: 10
             max-concurrency: 20
             prefetch: 4
+    redis:
+        database: 0
+        host: 192.168.99.100
+        port: 6379
+        password: ''
+        jedis:
+            pool:
+                max-idle: 8
+                min-idle: 0
+                max-wait: 60000
     datasource:
         dbgeekplatform:
             driver-class-name: com.mysql.jdbc.Driver
-            jdbc-url: jdbc:mysql://192.168.99.100:3306/db_geekplatform?characterEncoding=utf8
+            url: jdbc:mysql://192.168.99.100:3306/db_geekplatform?characterEncoding=utf8
             username: root
             password: root
         dblog:
@@ -54,21 +64,32 @@ mybatis:
 elasticsearch:
     host: 192.168.99.100
     port: 9200
+#
+#
+#redis:
+#    jedisPoolConfig:
+#        maxIdle: 8
+#        maxTotal: 8
+#        maxWaitTime: 60000
+#        minIdle: 3
+#        testOnBorrow: true
+#        urls: 192.168.99.100:6379
+#    timeout: 3000
 
-redis:
-    hostName: 192.168.99.100
-    port: 6379
-    password: ''
-    maxActive: ''
-    maxIdle: 300
-    maxTotal: 1000
-    maxWaitMillis: 1000
-    minEvictableIdleTimeMillis: 300000
-    numTestsPerEvictionRun: 1024
-    testOnBorrow: true
-    testWhileIdle: true
-    timeBetweenEvictionRunsMillis: 30000
-    timeout: 5000
+#redis:
+#    hostName: 192.168.99.100
+#    port: 6379
+#    password: ''
+#    maxActive: ''
+#    maxIdle: 300
+#    maxTotal: 1000
+#    maxWaitMillis: 1000
+#    minEvictableIdleTimeMillis: 300000
+#    numTestsPerEvictionRun: 1024
+#    testOnBorrow: true
+#    testWhileIdle: true
+#    timeBetweenEvictionRunsMillis: 30000
+#    timeout: 5000
 
 fdfs:
     soTimeout: 1500
