@@ -1,8 +1,45 @@
-# Created by .ignore support plugin (hsz.mobi)
-### Example user template template
-### Example user template
+*/target/
+/target
+!.mvn/wrapper/maven-wrapper.jar
 
-# IntelliJ project files
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
 .idea
+*.iws
 *.iml
-/*/target/
+*.ipr
+*.class
+*.log
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/risk-cloud-public-storage-service/src/main/resources/rebel.xml
+/risk-cloud-third-part-service/src/main/resources/rebel.xml
+/risk-cloud-loan-service/src/main/resources/rebel.xml
+/risk-cloud-loan-service-api/src/main/resources/rebel.xml
+/risk-cloud-data-center-service-api/src/main/resources/rebel.xml
+/risk-cloud-data-center-service/src/main/resources/rebel.xml
+/risk-cloud-common-service/src/main/resources/rebel.xml
+/risk-cloud-configuration/src/main/resources/rebel.xml
+
+### Log ###
+*.log
+fastdfs-client-java/
+fastdfs-service/src/main/java/cn/forgeeks/awesome/util/
+logs/
+mail-service/src/main/java/cn/forgeeks/awesome/util/
+order-web/logs/
+utils-service/src/main/java/cn/forgeeks/awesome/util/

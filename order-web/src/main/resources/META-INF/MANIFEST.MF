@@ -1,0 +1,1 @@
+Main-Class: cn.forgeeks.awesome.order.MainApplication
