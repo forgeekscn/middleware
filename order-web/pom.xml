@@ -12,6 +12,34 @@
     <artifactId>order-web</artifactId>
 
     <packaging>war</packaging>
+<!--
+
+
+    <profiles>
+        <profile>
+            <id>home</id>
+            <properties>
+                <environment>home</environment>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>work</id>
+            <properties>
+                <environment>work</environment>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <environment>prod</environment>
+            </properties>
+        </profile>
+    </profiles>
+
+-->
 
     <dependencies>
         <dependency>
