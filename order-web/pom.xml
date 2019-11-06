@@ -11,7 +11,7 @@
 
     <artifactId>order-web</artifactId>
 
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 <!--
 
 
