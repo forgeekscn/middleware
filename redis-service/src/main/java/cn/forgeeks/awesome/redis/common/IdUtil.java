@@ -1,8 +1,5 @@
 package cn.forgeeks.awesome.redis.common;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 /**
  * 分布式ID生成器-redis实现
  */

@@ -1,14 +1,11 @@
 package cn.forgeeks.awesome.thread;
 
 import com.alibaba.fastjson.JSONObject;
-import javafx.concurrent.Worker;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
-import java.util.HashSet;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.ReentrantLock;
 
 
 /**

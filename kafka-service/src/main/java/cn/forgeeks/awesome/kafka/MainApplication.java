@@ -1,14 +1,5 @@
 package cn.forgeeks.awesome.kafka;
 
-import cn.forgeeks.awesome.kafka.chen.common.message.PayMessage;
-import cn.forgeeks.awesome.kafka.chen.common.util.ToolsUtil;
-import cn.forgeeks.awesome.kafka.chen.producer.MessageProducer;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.context.ApplicationContext;
-
-
 //@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class },
 //        scanBasePackages = { "cn.forgeeks.awesome.kafka"  }
 //)

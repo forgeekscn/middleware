@@ -4,7 +4,6 @@ import cn.forgeeks.awesome.kafka.common.KafkaSender;
 import cn.forgeeks.awesome.mq.common.sender.RabbitLogSender;
 import cn.forgeeks.awesome.order.mapper.log.OrderLogMapper;
 import cn.forgeeks.awesome.order.mapper.platform.UserMapper;
-import cn.forgeeks.awesome.redis.common.config.util.hash.HashRedisUtil;
 import cn.forgeeks.awesome.redis.common.spconf.com.service.RedisService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

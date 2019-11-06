@@ -1,6 +1,7 @@
 package cn.forgeeks.awesome.es.common;
 
 import lombok.Data;
+
 import java.util.List;
 
 @Data
