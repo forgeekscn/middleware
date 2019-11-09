@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class DataResourceController {
 
-    @Autowired
+    @Autowired(required = false)
     OrderService orderService;
 
-    @Autowired
+    @Autowired(required = false)
     ElasticService elasticService;
 
 

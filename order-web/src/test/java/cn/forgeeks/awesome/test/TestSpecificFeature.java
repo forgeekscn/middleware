@@ -59,7 +59,7 @@ public class TestSpecificFeature {
         redisService.existsKey("a");
     }
 
-    @Test
+//    @Test
     public void testd(){
         orderLogMapper.getOrderLogCount("2019-11-06");
     }

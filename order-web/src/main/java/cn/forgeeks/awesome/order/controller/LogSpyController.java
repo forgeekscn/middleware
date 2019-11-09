@@ -20,26 +20,26 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/rabbit")
 public class LogSpyController {
 
-    @Autowired
+    @Autowired(required = false)
     RabbitLogSender rabbitSender;
 
-    @Autowired
+    @Autowired(required = false)
     RabbitMailSender rabbitMailSender;
 
-    @Autowired
+    @Autowired(required = false)
     RabbitOrderSender rabbitOrderSender;
 
-    @Autowired
+    @Autowired(required = false)
     RabbitDirectSender rabbitDirectSender;
 
-    @Autowired
+    @Autowired(required = false)
     RabbitFanoutSender rabbitFanoutSender;
 
-    @Autowired
+    @Autowired(required = false)
     OrderService orderService;
 
     @Qualifier("ElasticService")
-    @Autowired
+    @Autowired(required = false)
     ElasticService elasticService;
 
     @ApiOperation(value ="es测试", notes = "es测试")

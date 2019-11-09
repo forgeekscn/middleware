@@ -15,19 +15,19 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class OrderService {
 
-    @Autowired
+    @Autowired(required = false)
     RedisService redisUtil;
 
-    @Autowired
+    @Autowired(required = false)
     RabbitLogSender rabbitLogSender;
 
     @Autowired(required = false)
     KafkaSender kafkaSender;
 
-    @Autowired
+    @Autowired(required = false)
     OrderLogMapper orderLogMapper;
 
-    @Autowired
+    @Autowired(required = false)
     UserMapper userMapper;
 
     public void test(){
