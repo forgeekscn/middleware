@@ -1,4 +1,4 @@
-package cn.forgeeks.awesome.thread;
+package cn.forgeeks.awesome.common.thread;
 
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;

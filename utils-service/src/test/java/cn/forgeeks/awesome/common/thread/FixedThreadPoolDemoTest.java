@@ -1,8 +1,6 @@
-package cn.forgeeks.awesome.thread;
+package cn.forgeeks.awesome.common.thread;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class FixedThreadPoolDemoTest {
 

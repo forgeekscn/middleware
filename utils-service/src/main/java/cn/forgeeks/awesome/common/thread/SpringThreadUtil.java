@@ -1,13 +1,11 @@
-package cn.forgeeks.awesome.thread;
+package cn.forgeeks.awesome.common.thread;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.List;
-import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 @Slf4j
 public class SpringThreadUtil {

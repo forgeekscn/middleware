@@ -1,4 +1,4 @@
-package cn.forgeeks.awesome.thread;
+package cn.forgeeks.awesome.common.thread;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
