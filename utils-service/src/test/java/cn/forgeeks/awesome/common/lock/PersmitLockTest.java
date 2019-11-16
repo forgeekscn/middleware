@@ -22,7 +22,7 @@ public class PersmitLockTest {
 				UUID.randomUUID().toString(), UUID.randomUUID().toString(), 20, new AtomicInteger(100));
 
 		Integer num = 100;
-		PersmitLock lock = new PersmitLock();
+		PersmitLock lock = new PersmitLock(true);
 		List<Runnable> listA =
 			StreamUtil.getNatureNumbers(10000).stream()
 				.map(k -> new MyRunnableA(num, userDto,lock))

@@ -15,6 +15,13 @@ public class PersmitLock {
     this.lock = new ReentrantLock();
   }
 
+  /**
+   * fair & unfair reentran lock
+   */
+  public PersmitLock(boolean isFair) {
+    this.lock = new ReentrantLock(isFair);
+  }
+
   public boolean tryLock() {
 
     try {
