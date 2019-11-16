@@ -6,32 +6,27 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-
 @Slf4j
 public class PersmitLock {
 
+  private Lock lock;
 
+  public PersmitLock() {
+    this.lock = new ReentrantLock();
+  }
 
-    private Lock lock ;
+  public boolean tryLock() {
 
-    public PersmitLock(){
-        this.lock = new ReentrantLock();
+    try {
+      boolean isSueccess = lock.tryLock(1L, TimeUnit.SECONDS);
+      return isSueccess;
+    } catch (InterruptedException e) {
+      log.warn("### trylcok failed ", e);
     }
+    return false;
+  }
 
-    public void tryLock(){
-
-        try {
-            lock.tryLock(5L , TimeUnit.SECONDS);
-            log.info("### try lcok success");
-        } catch (InterruptedException e) {
-            log.warn("### trylcok failed ",e);
-        }
-    }
-
-    public void unlock(){
-        lock.unlock();
-        log.info("### unlock success");
-    }
-
-
+  public void unlock() {
+    lock.unlock();
+  }
 }
