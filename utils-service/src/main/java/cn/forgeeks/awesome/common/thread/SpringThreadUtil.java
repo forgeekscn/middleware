@@ -28,22 +28,25 @@ public class SpringThreadUtil {
         return taskExecutor;
     }
 
+    public static ThreadPoolTaskExecutor submitTask(List<Runnable> tasks) {
+        return submitTask(tasks , 60);
+    }
 
 
     public static ThreadPoolTaskExecutor submitTask(List<Runnable> tasks, long timeOutSecond ){
-        ThreadPoolTaskExecutor pool = generateDefaultThreadPool();
+    ThreadPoolTaskExecutor pool = generateDefaultThreadPool();
 
-        tasks.forEach(pool::submit);
+    tasks.forEach(pool::submit);
 
-        try {
-            pool.getThreadPoolExecutor().awaitTermination(timeOutSecond, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            log.error("### error" , e);
-        }finally{
-            pool.destroy();
-        }
-        log.info("### task finished in {} seconds " , timeOutSecond);
-        return pool;
+    try {
+        pool.getThreadPoolExecutor().awaitTermination(timeOutSecond, TimeUnit.SECONDS);
+    } catch (InterruptedException e) {
+        log.error("### error" , e);
+    }finally{
+        pool.destroy();
+    }
+    log.info("### task finished in {} seconds " , timeOutSecond);
+    return pool;
     }
 
 
