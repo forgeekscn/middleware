@@ -1,5 +1,6 @@
 package cn.forgeeks.awesome.common.thread;
 
+import cn.forgeeks.awesome.common.stream.StreamUtil;
 import cn.forgeeks.awesome.common.util.format.BigDecimalFomatUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class SpringThreadUtil {
@@ -59,4 +61,9 @@ public class SpringThreadUtil {
     log.info("### tasks finished in {} ms ", duration);
     return pool;
   }
+
+  public static void submitTasksFor100Times(Runnable runnable){
+    submitTask(StreamUtil.getNatureNumbers(1000).stream().map(k->runnable).collect(Collectors.toList()));
+  }
+
 }
