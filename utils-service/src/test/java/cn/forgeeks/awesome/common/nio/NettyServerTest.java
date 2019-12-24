@@ -12,9 +12,6 @@ import static org.junit.Assert.*;
 @Slf4j
 public class NettyServerTest {
 
-
-
-
 	@Test
 	public void testA(){
 		SimpleServer server = new SimpleServer(9999);
@@ -26,7 +23,15 @@ public class NettyServerTest {
 	public void testB(){
 		SimpleClient client = new SimpleClient();
 		client.start("127.0.0.1",9999);
+	}
+
+
+	@Test
+	public void testSend(){
+
 
 	}
+
+
 
 }
