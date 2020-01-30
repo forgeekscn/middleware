@@ -78,4 +78,15 @@ public class OptmisticLockTest {
 
 
 
+
+
+    @Test
+    public void testC(){
+
+        AtomicInteger a= new AtomicInteger();
+    }
+
+
+
+
 }
